@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:mongo_dart/mongo_dart.dart';
+import 'package:project/dbHelper/MongoDBModel.dart';
 import 'package:project/dbHelper/constant.dart';
 
 
@@ -20,6 +21,20 @@ class MongoDatabase{
         "email":"email"
       }
     ); */
+  }
+  static Future<String> insert(MongoDbModel data) async {
+    try {
+       var result = await userCollection.insertOne(data.toJson());
+       if(result.isSucess){
+         return "Data inserée";
+       }else {
+         return "quelques choses a foirée dans l'insertion de data";
+       }
+    }
+    catch(e){
+      print(e.toString());
+      return e.toString();
+    }
   }
 
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/insert.dart';
 
 import 'dbHelper/mongoDB.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const MongoDbInsert(),
     );
   }
 }
