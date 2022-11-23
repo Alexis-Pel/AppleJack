@@ -5,36 +5,45 @@ import 'package:project/dbHelper/mongoDB.dart';
 import 'package:project/dbHelper/constant.dart';
 
 
-User mongoDbModelFromJson(String str) => User.fromJson(json.decode(str));
+User userFromJson(String str) => User.fromJson(json.decode(str));
 
-String mongoDbModelToJson(User data) => json.encode(data.toJson());
+String userToJson(User data) => json.encode(data.toJson());
 
 class User {
   User({
     required this.id,
     required this.firstName,
     required this.lastName,
-    required this.address,
+    required this.mail,
+    required this.password,
+    required this.role,
   });
 
   ObjectId id;
   String firstName;
   String lastName;
-  String address;
+  String mail;
+  String password;
+  int role;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
     id: json["_id"],
     firstName: json["firstName"],
     lastName: json["lastName"],
-    address: json["address"],
+    mail: json["mail"],
+    password: json["password"],
+    role: json["role"],
   );
 
   Map<String, dynamic> toJson() => {
     "_id": id,
     "firstName": firstName,
     "lastName": lastName,
-    "address": address,
+    "mail": mail,
+    "password": password,
+    "role": role,
   };
+
 
   static Future<List<Map<String,dynamic>>> getUsers() async{
     var result =  MongoDatabase.getData(USERS_COLLECTION);
