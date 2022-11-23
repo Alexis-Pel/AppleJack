@@ -50,7 +50,9 @@ class _MongoDbDisplayState extends State<MongoDbDisplay> {
           const SizedBox(height: 5),
           Text(data.lastName),
           const SizedBox(height: 5),
-          Text(data.address),
+          Text(data.mail),
+          const SizedBox(height: 5),
+          Text(data.password),
         ],
       ),
     );
