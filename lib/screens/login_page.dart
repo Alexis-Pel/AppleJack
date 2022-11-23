@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/screens/add_user.dart';
 import '../Models/UserModel.dart';
 import 'home.dart';
 
@@ -119,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 TextButton(
                   onPressed: () {
-                    //addUser();
+                    addUser();
                   },
                   child:
                   Padding(
@@ -172,6 +173,10 @@ class _LoginPageState extends State<LoginPage> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     }
+  }
+
+  void addUser() {
+    Navigator.pushNamed(context, AddUserPage.tag);
   }
 
   void goToHome() {

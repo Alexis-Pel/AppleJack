@@ -4,6 +4,7 @@ import '../Models/UserModel.dart';
 import 'home.dart';
 
 class AddUserPage extends StatefulWidget {
+  static const tag = "AddUserPage";
   //const LoginPage({super.key});
 
   //const LoginPage({Key? key}) : super ({key: key});
