@@ -40,7 +40,7 @@ class _Page extends State<Page> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Ajouter un cours"),
-      ),g
+      ),
       body: Center(
         child: SizedBox(
         height: MediaQuery.of(context).size.height / 1.5,
