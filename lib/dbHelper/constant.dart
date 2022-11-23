@@ -5,3 +5,4 @@ const COURSE_COLLECTION = "Courses";
 const HORSE_COLLECTION = "Horses";
 const PARTY_COLLECTION = "Partys";
 const COMPETITION_COLLECTION = "Competitions";
+const DASHBOARDEVENT_COLLECTION = "DashboardEvent";
