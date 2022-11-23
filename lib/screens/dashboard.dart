@@ -15,10 +15,7 @@ class _Dashboard extends State<Dashboard> {
     // List data = ModalRoute.of(context)!.settings.arguments as List;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Dashboard'),
-      ),
-      body: Text('The dashboard'),
+      body: Text('Dashboard'),
     );
     throw UnimplementedError();
   }
