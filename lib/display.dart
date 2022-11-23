@@ -46,9 +46,9 @@ class _MongoDbDisplayState extends State<MongoDbDisplay> {
         children: [
           Text('${data.id}'),
           const SizedBox(height: 5),
-          Text(data.firstName),
+          //Text(data.firstName),
           const SizedBox(height: 5),
-          Text(data.lastName),
+          //Text(data.lastName),
           const SizedBox(height: 5),
           Text(data.mail),
           const SizedBox(height: 5),

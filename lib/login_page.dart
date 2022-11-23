@@ -92,8 +92,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 10),
 
-                //Button connection
-                Padding(
+            TextButton(
+              onPressed: () {
+                login();
+              },
+              child:
+              Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
                     padding: const EdgeInsets.all(20),
@@ -101,12 +105,8 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.deepPurple,
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Center(
-                        child: TextButton(
-                      onPressed: () {
-                        login();
-                      },
-                      child: const Text(
+                    child: const Center(
+                        child:Text(
                         'Je me connecte',
                         style: TextStyle(
                           color: Colors.white,
@@ -115,8 +115,8 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     )),
-                  ),
-                ),
+                  ),),
+
                 const SizedBox(height: 25),
               ],
             ),
@@ -128,9 +128,26 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> login() async {
     if(_emailController.text.contains("@") && _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty) {
-      var result = await MongoDatabase.getOne({"mail": _emailController.text}, USERS_COLLECTION);
-      User user = User.fromJson(result!);
-      print(user);
+
+      // Get user by mail and password
+      var result = await User.getOneUser({"mail": _emailController.text, "password": _passwordController.text});
+
+      //User connected
+      try{
+        User user = User.fromJson(result!);
+        print("USER CONNECTED");
+      }
+      // Email or Password incorrect
+      catch(e){
+        var snackBar = SnackBar(
+          content: const Text('Email ou mot de passe incorrect'),
+          action: SnackBarAction(
+            label: 'Fermer',
+            onPressed: () {},
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     }
   }
 }

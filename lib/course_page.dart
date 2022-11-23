@@ -42,13 +42,13 @@ class _Page extends State<Page> {
         title: const Text("Ajouter un cours"),
       ),
       body: Center(
-          child: SizedBox(
+        child: SizedBox(
         height: MediaQuery.of(context).size.height / 1.5,
         width: MediaQuery.of(context).size.width / 2,
         child: Form(
-            child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
             //Terrain Radio
             Column(
               children: [
@@ -83,7 +83,6 @@ class _Page extends State<Page> {
                 ),
               ],
             ),
-
             // Discipline radio
             Container(
               margin: const EdgeInsets.only(top: 20.0),
