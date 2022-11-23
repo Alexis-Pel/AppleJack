@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/display.dart';
+import 'package:project/screens/dashboard.dart';
 
 import 'dbHelper/mongoDB.dart';
 
@@ -16,11 +17,36 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Applejack',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: DefaultTabController(
+        length: 5,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: const TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.add_chart),),
+                Tab(icon: Icon(Icons.add_circle),),
+                Tab(icon: Icon(Icons.add_box_outlined)),
+                Tab(icon: Icon(Icons.add)),
+                Tab(icon: Icon(Icons.add_circle_outline))
+              ],
+            ),
+            title: const Text('Applejack'),
+          ),
+          body: TabBarView(
+            children: [
+              MyHomePage(),
+              MyHomePage(),
+              MyHomePage(),
+              MyHomePage(),
+              Dashboard(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -35,8 +61,7 @@ class MyHomePage extends StatefulWidget {
 class  _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: MongoDbDisplay(),
+    return Scaffold(
     );
   }
 }
