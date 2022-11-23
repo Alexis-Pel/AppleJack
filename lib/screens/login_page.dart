@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project/dbHelper/constant.dart';
 import 'package:project/dbHelper/mongoDB.dart';
 
-import 'Models/UserModel.dart';
+import '../Models/UserModel.dart';
+import 'home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -128,14 +129,12 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> login() async {
     if(_emailController.text.contains("@") && _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty) {
-
       // Get user by mail and password
       var result = await User.getOneUser({"mail": _emailController.text, "password": _passwordController.text});
-
       //User connected
       try{
         User user = User.fromJson(result!);
-        print("USER CONNECTED");
+        goToHome();
       }
       // Email or Password incorrect
       catch(e){
@@ -149,5 +148,9 @@ class _LoginPageState extends State<LoginPage> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     }
+  }
+
+  void goToHome() {
+    Navigator.pushNamed(context, Home.tag);
   }
 }

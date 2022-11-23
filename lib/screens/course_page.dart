@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as m;
-import 'Models/CourseModel.dart';
-import 'dbHelper/mongoDB.dart';
+import '../Models/CourseModel.dart';
+import '../dbHelper/mongoDB.dart';
 
 void main() async {
   await MongoDatabase.connect();
