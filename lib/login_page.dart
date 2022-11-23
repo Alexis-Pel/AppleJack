@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:project/dbHelper/constant.dart';
+import 'package:project/dbHelper/mongoDB.dart';
 
+import 'Models/UserModel.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   //const LoginPage({Key? key}) : super ({key: key});
 
   @override
@@ -9,12 +14,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   //controller
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -27,52 +29,46 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 //logo
-                Container(
+                SizedBox(
                   height: 150,
                   width: 150,
                   child: Image.asset("assets/appleJackLogo.png"),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
 
                 //Connecte toi !
-                Text(
+                const Text(
                   'Connecte toi',
-                  style: TextStyle(
-                    fontSize: 45,
-                    fontFamily: 'Poppins'
-                  ),
+                  style: TextStyle(fontSize: 45, fontFamily: 'Poppins'),
                 ),
-                SizedBox(height: 10),
-                Text(
-                  'BIENVENU SUR APPLEJACK',
-                  style: TextStyle(
-                    fontSize: 15,
-                      fontFamily: 'Poppins'
-                  ),
+                const SizedBox(height: 10),
+                const Text(
+                  'BIENVENUE SUR APPLEJACK',
+                  style: TextStyle(fontSize: 15, fontFamily: 'Poppins'),
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
 
                 //Email
                 Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: TextField(
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.deepPurple),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        hintText: 'Email',
-                        fillColor: Colors.grey[200],
-                        filled: true,
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(15),
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.deepPurple),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      hintText: 'Email',
+                      fillColor: Colors.grey[200],
+                      filled: true,
                     ),
+                  ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
                 //Password
                 Padding(
@@ -81,11 +77,11 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _passwordController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
+                        borderSide: const BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(15),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.deepPurple),
+                        borderSide: const BorderSide(color: Colors.deepPurple),
                         borderRadius: BorderRadius.circular(15),
                       ),
                       hintText: 'Password',
@@ -94,19 +90,23 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
                 //Button connection
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: Colors.deepPurple,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Center(
-                      child: Text(
+                        child: TextButton(
+                      onPressed: () {
+                        login();
+                      },
+                      child: const Text(
                         'Je me connecte',
                         style: TextStyle(
                           color: Colors.white,
@@ -114,20 +114,23 @@ class _LoginPageState extends State<LoginPage> {
                           fontSize: 18,
                         ),
                       ),
-                    ),
+                    )),
                   ),
                 ),
-                SizedBox(height: 25),
-
-
+                const SizedBox(height: 25),
               ],
             ),
           ),
         ),
       ),
-
-
-
     );
+  }
+
+  Future<void> login() async {
+    if(_emailController.text.contains("@") && _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty) {
+      var result = await MongoDatabase.getOne({"mail": _emailController.text}, USERS_COLLECTION);
+      User user = User.fromJson(result!);
+      print(user);
+    }
   }
 }

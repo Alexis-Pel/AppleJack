@@ -30,6 +30,18 @@ class MongoDatabase{
     }
   }
 
+  static Future<Map<String, dynamic>?> getOne(Map<String, dynamic> data,String collectionString) async {
+    try {
+      var collection = db.collection(collectionString);
+      var result = await collection.findOne(data);
+      return result;
+    }
+    catch(e){
+      print(e.toString());
+      return null;
+    }
+  }
+
 
 
 
