@@ -21,7 +21,7 @@ class User {
     required this.role,
   });
 
-  String id;
+  ObjectId id;
   String tel;
   String mail;
   String password;
@@ -61,6 +61,9 @@ class User {
     MongoDatabase.createData(user.toJson(),USERS_COLLECTION);
   }
 
+  static Future<Map<String, dynamic>?> getOneUser(Map<String, dynamic> json) async {
+    return await MongoDatabase.getOne(json, USERS_COLLECTION);
+  }
 
 }
 
