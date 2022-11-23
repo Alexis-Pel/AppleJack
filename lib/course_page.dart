@@ -151,7 +151,7 @@ class _Page extends State<Page> {
 
             //Duration
             Container(
-              margin: const EdgeInsets.only(top: 20.0),
+              margin: const EdgeInsets.only(top: 20.0, bottom: 20),
               child: Column(
                 children: <Widget>[
                   ListTile(
@@ -188,6 +188,10 @@ class _Page extends State<Page> {
                     //_cards = result;
                   });
                 },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                ),
                 child: Text("Send"))
           ],
         )),
