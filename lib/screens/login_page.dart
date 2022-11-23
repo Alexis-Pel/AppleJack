@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project/dbHelper/constant.dart';
-import 'package:project/dbHelper/mongoDB.dart';
-
 import '../Models/UserModel.dart';
 import 'home.dart';
 
@@ -91,34 +88,61 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
 
-            TextButton(
-              onPressed: () {
-                login();
-              },
-              child:
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.deepPurple,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: const Center(
-                        child:Text(
-                        'Je me connecte',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                TextButton(
+                  onPressed: () {
+                    login();
+                  },
+                  child:
+                    Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 70.0),
+                        child: Container(
+                          padding: const EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                            color: Colors.deepPurple,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: const Center(
+                              child:Text(
+                              'Je me connecte',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Poppins',
+                                fontSize: 15,
+                              ),
+                            ),
+                          )),
                         ),
-                      ),
-                    )),
-                  ),),
+                ),
+                const SizedBox(height: 50),
 
-                const SizedBox(height: 25),
+                TextButton(
+                  onPressed: () {
+                    //addUser();
+                  },
+                  child:
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 70.0),
+                    child: Container(
+                        padding: const EdgeInsets.all(7),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: const Center(
+                          child:Text(
+                            'Créer un compte',
+                            style: TextStyle(
+                              color: Colors.deepPurple,
+                              fontFamily: 'Poppins',
+                              fontSize: 15,
+                            ),
+                          ),
+                        )),
+                  ),
+                ),
+
               ],
             ),
           ),
