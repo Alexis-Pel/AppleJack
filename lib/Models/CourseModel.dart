@@ -49,3 +49,18 @@ Future<List<Map<String, dynamic>>> getCourses() async {
 Future<void> createCourse(Course course) async {
   var response = await MongoDatabase.createData(course.toJson(), COURSE_COLLECTION);
 }
+
+Future<List<Map<String, Object?>>?> getWeekCourses() async {
+  var today = DateTime.now();
+  var aadays = (today.day - (today.day - today.weekday + 1));
+  var aaaa = Duration(days: aadays, hours: today.hour, minutes: today.minute);
+  var bbbb = Duration(days: 6 - aadays);
+
+
+  var before = today.subtract(aaaa);
+  var after = today.add(bbbb);
+
+  var result = await MongoDatabase.getAllBy({"date": {r"$gte": before, r"$lt": after}}, COURSE_COLLECTION);
+
+  return result;
+}
