@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/course_page.dart';
 import 'login_page.dart';
 import 'package:project/screens/dashboard.dart';
 
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
           body: TabBarView(
             children: [
               Dashboard(),
-              Dashboard(),
+              CoursePage(),
               Dashboard(),
               Dashboard(),
               Dashboard(),
