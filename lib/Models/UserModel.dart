@@ -14,6 +14,7 @@ class User {
     required this.id,
     required this.tel,
     required this.mail,
+    required this.username,
     required this.password,
     required this.age,
     required this.link,
@@ -24,6 +25,7 @@ class User {
   ObjectId id;
   String tel;
   String mail;
+  String username;
   String password;
   String age;
   String link;
@@ -34,6 +36,7 @@ class User {
     id: json["_id"],
     tel: json["tel"],
     mail: json["mail"],
+    username: json["username"],
     password: json["password"],
     age: json["age"],
     link: json["link"],
@@ -45,6 +48,7 @@ class User {
     "_id": id,
     "tel": tel,
     "mail": mail,
+    "username": username,
     "password": password,
     "age": age,
     "link": link,
