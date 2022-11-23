@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/screens/concours_page.dart';
 import 'package:project/screens/course_page.dart';
 import 'package:project/screens/soiree_page.dart';
 import 'login_page.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
               Dashboard(),
               CoursePage(),
               PartyPage(),
-              Dashboard(),
+              ContestPage(),
               Dashboard(),
             ],
           ),
