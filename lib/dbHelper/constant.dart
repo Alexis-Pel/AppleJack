@@ -4,3 +4,4 @@ const USERS_COLLECTION = "Users";
 const COURSE_COLLECTION = "Courses";
 const HORSE_COLLECTION = "Horses";
 const PARTY_COLLECTION = "Partys";
+const COMPETITION_COLLECTION = "Competitions";
