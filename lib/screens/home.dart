@@ -22,7 +22,7 @@ class Home extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Applejack',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
       home: DefaultTabController(
         length: 5,
