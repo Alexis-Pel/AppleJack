@@ -1,7 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as m;
-import 'package:project/dbHelper/MongoDBModel.dart';
+import 'package:project/Models/UserModel.dart';
 import 'package:project/dbHelper/mongoDB.dart';
 
 class MongoDbInsert extends StatefulWidget {
@@ -58,8 +58,8 @@ class _MongoDbInsertState extends State<MongoDbInsert> {
 
   Future<void> _insertData(String name,String lName,String address)async {
   var _id= m.ObjectId();// permet d'avoir un id unique
-  final data = MongoDbModel(id: _id, firstName: name, lastName: lName, address: address);
-  var result = await MongoDatabase.insert(data);
+  final data = User(id: _id, firstName: name, lastName: lName, address: address);
+  User.createUsers(data);
   ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("ID Inseré : ${_id.$oid}")));
   _clearAll();
