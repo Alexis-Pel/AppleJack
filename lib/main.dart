@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/screens/home.dart';
 import 'package:project/screens/login_page.dart';
-
 import 'dbHelper/mongoDB.dart';
 
 void main() async {
