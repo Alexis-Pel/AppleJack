@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/insert.dart';
+import 'package:project/display.dart';
 
 import 'dbHelper/mongoDB.dart';
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MongoDbInsert(),
+      home: const MyHomePage(),
     );
   }
 }
@@ -35,8 +35,8 @@ class MyHomePage extends StatefulWidget {
 class  _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(child: Text("test")),
+    return const Scaffold(
+      body: MongoDbDisplay(),
     );
   }
 }
