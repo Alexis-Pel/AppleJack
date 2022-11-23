@@ -12,38 +12,45 @@ String userToJson(User data) => json.encode(data.toJson());
 class User {
   User({
     required this.id,
-    required this.firstName,
-    required this.lastName,
+    required this.tel,
     required this.mail,
     required this.password,
+    required this.age,
+    required this.link,
+    required this.picture,
     required this.role,
   });
 
-  ObjectId id;
-  String firstName;
-  String lastName;
+  String id;
+  String tel;
   String mail;
   String password;
+  String age;
+  String link;
+  String picture;
   int role;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
     id: json["_id"],
-    firstName: json["firstName"],
-    lastName: json["lastName"],
+    tel: json["tel"],
     mail: json["mail"],
     password: json["password"],
+    age: json["age"],
+    link: json["link"],
+    picture: json["picture"],
     role: json["role"],
   );
 
   Map<String, dynamic> toJson() => {
     "_id": id,
-    "firstName": firstName,
-    "lastName": lastName,
+    "tel": tel,
     "mail": mail,
     "password": password,
+    "age": age,
+    "link": link,
+    "picture": picture,
     "role": role,
   };
-
 
   static Future<List<Map<String,dynamic>>> getUsers() async{
     var result =  MongoDatabase.getData(USERS_COLLECTION);
