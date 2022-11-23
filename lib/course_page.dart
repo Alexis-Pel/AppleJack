@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-
-import 'course.dart';
+import 'package:mongo_dart/mongo_dart.dart' as m;
+import 'Models/CourseModel.dart';
+import 'dbHelper/mongoDB.dart';
 
 void main() async {
+  await MongoDatabase.connect();
   runApp(const CoursePage());
 }
 
@@ -183,7 +185,7 @@ class _Page extends State<Page> {
             ),
             TextButton(
                 onPressed: () {
-                  sendCourse(Course(_date, _duration, _terrain, _discipline));
+                  sendCourse(Course(_date, _duration, _terrain, _discipline, m.ObjectId()));
                   setState(() {
                     //_cards = result;
                   });
@@ -210,10 +212,8 @@ class _Page extends State<Page> {
   }
 
   void sendCourse(Course course) {
-
-    //
-    //SEND COURSE TO DATABASE
-    //
+    //Call Model Function
+    createCourse(course);
 
     //Display snackbar
     var snackBar = SnackBar(
