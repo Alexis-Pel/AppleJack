@@ -32,9 +32,7 @@ class _Page extends State<Page> {
   @override
 Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Ajouter une soirée à thème'),
-      ),
+      body: Text('Ajouter une soirée'),
     );
   }
 }
