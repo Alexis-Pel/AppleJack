@@ -33,7 +33,7 @@ class _Page extends State<Page> {
 Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Party'),
+        title: const Text('Ajouter une soirée à thème'),
       ),
     );
   }

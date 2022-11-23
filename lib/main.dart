@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/screens/course_page.dart';
+import 'package:project/screens/soiree_page.dart';
 import 'login_page.dart';
 import 'package:project/screens/dashboard.dart';
 
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
             children: [
               Dashboard(),
               CoursePage(),
-              Dashboard(),
+              PartyPage(),
               Dashboard(),
               Dashboard(),
             ],
