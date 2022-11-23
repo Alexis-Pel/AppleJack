@@ -27,7 +27,7 @@ class Horse {
     required this.dp,
   });
 
-  String id;
+  ObjectId id;
   String photo;
   String name;
   String age;
