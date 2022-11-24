@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         Home.tag: (context) => Home(),
-        MyApp.tag: (context) => const MyApp(),
+        MyApp.tag: (context) => MyApp(),
         AddUserPage.tag: (context) => AddUserPage(),
       },
       debugShowCheckedModeBanner: false,

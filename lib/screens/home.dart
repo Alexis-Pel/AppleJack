@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/screens/calendar_page.dart';
 import 'package:project/screens/concours_page.dart';
 import 'package:project/screens/course_page.dart';
 import 'package:project/screens/soiree_page.dart';
@@ -30,36 +31,44 @@ class Home extends StatelessWidget {
           appBar: AppBar(
             bottom: const TabBar(
               tabs: [
+
+                //Home
                 Tab(
                   icon: Icon(Icons.home),
-                  text: 'Actualité',
+                    child:Text(style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),"Actualité", maxLines: 1,)
                 ),
-                Tab(
-                  icon: Icon(Icons.school),
-                  text: 'Cours',
-                ),
+
+                //Parties
                 Tab(
                   icon: Icon(Icons.local_fire_department),
-                  text: 'Soirée',
+                    child:Text(style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),"Soirée", maxLines: 1,)
                 ),
+
+                //Concours
                 Tab(
                   icon: Icon(Icons.sports_score),
-                  text: 'Concours',
+                    child:Text(style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),"Concours", maxLines: 1,)
                 ),
+
+                //Courses
+                Tab(icon: Icon(Icons.calendar_month_outlined),
+                  child:Text(style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),"Cours", maxLines: 1,),),
+
+                //Profile
                 Tab(
                   icon: Icon(Icons.account_circle),
-                  text: 'Profil',
-                )
+                  child:Text(style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),"Profil", maxLines: 1,),
+                ),
               ],
             ),
             title: const Text('Applejack'),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
               Dashboard(),
-              CoursePage(),
               PartyPage(),
               ContestPage(),
+              MyAppCalendar(),
               Dashboard(),
             ],
           ),
