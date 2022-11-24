@@ -30,11 +30,26 @@ class Home extends StatelessWidget {
           appBar: AppBar(
             bottom: const TabBar(
               tabs: [
-                Tab(icon: Icon(Icons.add_chart),),
-                Tab(icon: Icon(Icons.add_circle),),
-                Tab(icon: Icon(Icons.add_box_outlined)),
-                Tab(icon: Icon(Icons.add)),
-                Tab(icon: Icon(Icons.add_circle_outline))
+                Tab(
+                  icon: Icon(Icons.home),
+                  text: 'Actualité',
+                ),
+                Tab(
+                  icon: Icon(Icons.school),
+                  text: 'Cours',
+                ),
+                Tab(
+                  icon: Icon(Icons.local_fire_department),
+                  text: 'Soirée',
+                ),
+                Tab(
+                  icon: Icon(Icons.sports_score),
+                  text: 'Concours',
+                ),
+                Tab(
+                  icon: Icon(Icons.account_circle),
+                  text: 'Profil',
+                )
               ],
             ),
             title: const Text('Applejack'),
