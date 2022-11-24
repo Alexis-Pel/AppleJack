@@ -20,15 +20,23 @@ class Competition {
     required this.adress,
     required this.picture,
     required this.date,
-    required this.cavalier,
+    required this.amateur,
+    required this.club1,
+    required this.club2,
+    required this.club3,
+    required this.club4,
   });
 
   ObjectId id;
   String name;
   String adress;
   String picture;
-  String date;
-  String cavalier;
+  DateTime date;
+  List<dynamic> amateur;
+  List<dynamic> club1;
+  List<dynamic> club2;
+  List<dynamic> club3;
+  List<dynamic> club4;
 
   factory Competition.fromJson(Map<String, dynamic> json) => Competition(
     id: json["_id"],
@@ -36,7 +44,11 @@ class Competition {
     adress: json["adress"],
     picture: json["picture"],
     date: json["date"],
-    cavalier: json["cavalier"],
+    amateur: json["amateur"],
+    club1: json["club1"],
+    club2: json["club2"],
+    club3: json["club3"],
+    club4: json["club4"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -45,14 +57,19 @@ class Competition {
     "adress": adress,
     "picture": picture,
     "date": date,
-    "cavalier": cavalier,
+    "amateur": amateur,
+    "club1": club1,
+    "club2": club2,
+    "club3": club3,
+    "club4": club4,
+
   };
-  Future<List<Map<String, dynamic>>> getCompetitions() async {
+  static Future<List<Map<String, dynamic>>> getCompetitions() async {
     var result = MongoDatabase.getData(COMPETITION_COLLECTION);
     return result;
   }
 
-  Future<void> createCompetition(Competition competition) async {
+  static Future<void> createCompetition(Competition competition) async {
     var response = await MongoDatabase.createData(competition.toJson(), COMPETITION_COLLECTION);
   }
 }
