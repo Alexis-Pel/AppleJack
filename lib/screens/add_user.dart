@@ -45,7 +45,7 @@ class _AddUserPageState extends State<AddUserPage> {
                 SizedBox(
                   height: 100,
                   width: 100,
-                  child: Image.asset("assets/appleJackLogo.png"),
+                  child: Image.asset("assets/images/appleJackLogo.png"),
                 ),
                 const SizedBox(height: 10),
 
