@@ -4,8 +4,11 @@ import 'package:project/screens/contest_page.dart';
 import 'package:project/screens/course_page.dart';
 import 'package:project/screens/party_calendar_page.dart';
 import 'package:project/screens/party_page.dart';
+import 'package:project/screens/profil_page.dart';
 import '../dbHelper/mongoDB.dart';
 import 'package:project/screens/dashboard.dart';
+
+import 'horse_page.dart';
 
 void main() async {
   //WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +23,9 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        HorsePage.tag: (context) => HorsePage(),
+      },
       debugShowCheckedModeBanner: false,
       title: 'AppleJack',
       theme: ThemeData(
@@ -96,7 +102,7 @@ class Home extends StatelessWidget {
               PartyCalendar(),
               ContestPage(),
               MyAppCalendar(),
-              Dashboard(),
+              ProfilPage(),
             ],
           ),
         ),

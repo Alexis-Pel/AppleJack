@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:project/dbHelper/globals.dart';
 
+import 'horse_page.dart';
+
 final _nameController = TextEditingController();
 var _telController = TextEditingController();
 var _emailController = TextEditingController();
@@ -17,6 +19,8 @@ var _imageController = TextEditingController();
 
 class ProfilPage extends StatefulWidget {
   const ProfilPage({Key? key}) : super(key: key);
+
+  static const String tag = "profile_page";
 
   @override
   State<ProfilPage> createState() => _ProfilPageState();
@@ -34,9 +38,13 @@ class _ProfilPageState extends State<ProfilPage> {
       _linkController.text = userLogged!.link;
       _imageController.text = userLogged!.picture;
     });
-    return Scaffold(
+    return MaterialApp(
+      routes: {
+        HorsePage.tag: (context) => const HorsePage(),
+        ProfilPage.tag: (context) => const ProfilPage(),
+      },
 
-      body: Container(
+      home: Container(
         padding: EdgeInsets.only(left: 15,top: 20,right: 15),
         child: GestureDetector(
           onTap: (){
@@ -80,6 +88,7 @@ class _ProfilPageState extends State<ProfilPage> {
           ),
         ),
       ),
+        //Add button
     );
   }
   Widget buildTextField(){
@@ -239,6 +248,8 @@ class _ProfilPageState extends State<ProfilPage> {
                   )),
             ),
           ),
+          TextButton(onPressed: () async { await Navigator.pushNamed(context, HorsePage.tag)
+              .then((value) => setState(() {}));}, child: Text("Chevaux"))
 
         ],
       )
