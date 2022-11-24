@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
 class CalendarCard extends StatelessWidget {
   final Course _course;
 
-  const CalendarCard(this._course, {super.key});
+  CalendarCard(this._course, {super.key});
 
 /*  Color getMyColor() {
     if (animal.name == "dog") {
@@ -36,12 +36,26 @@ class CalendarCard extends StatelessWidget {
       return Colors.red;
     }
   }*/
+  String _id = "123";
 
+  Icon _icon = const Icon(Icons.add, size: 40);
+
+  MaterialColor setPerso(){
+    if (_course.participants.contains(_id)){
+      _icon = const Icon(Icons.exit_to_app_outlined, size: 40);
+      return Colors.amber;
+    }
+    else{
+      _icon = const Icon(Icons.add, size: 40);
+      return Colors.deepPurple;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Card(
-        color: Colors.amber,
+        //Set color
+        color: setPerso(),
         margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
@@ -55,7 +69,10 @@ class CalendarCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    const Icon(Icons.front_hand_sharp, size: 60),
+                    TextButton(onPressed: (){
+                      print("Pressed");
+                      },
+                        child: _icon),
                     Column(
                         verticalDirection: VerticalDirection.down,
                         mainAxisSize: MainAxisSize.min,

@@ -184,7 +184,7 @@ class _Page extends State<Page> {
             ),
             TextButton(
                 onPressed: () {
-                  sendCourse(Course(_date, _duration, _terrain, _discipline, m.ObjectId()));
+                  sendCourse(Course(_date, _duration, _terrain, _discipline, m.ObjectId(), []));
                   setState(() {
                     //_cards = result;
                   });

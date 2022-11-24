@@ -14,9 +14,11 @@ class Course {
   String _discipline;
   DateTime _date;
   int _duration;
+  List<dynamic> _participants;
 
-  //Constructor
-  Course(this._date, this._duration, this._terrain, this._discipline, this._id);
+   //Constructor
+
+  Course(this._date, this._duration, this._terrain, this._discipline, this._id, this._participants);
 
   // Getters
   String get terrain => _terrain;
@@ -27,9 +29,11 @@ class Course {
 
   int get duration => _duration;
 
+  List<dynamic> get participants => _participants;
+
   //Map from Json
   factory Course.fromJson(Map<String, dynamic> json) => Course(json['date'],
-      json['duration'], json['terrain'], json['discipline'], json['_id']);
+      json['duration'], json['terrain'], json['discipline'], json['_id'], json['participants']);
 
   //Convert to json
   Map<String, dynamic> toJson() => {
@@ -38,6 +42,7 @@ class Course {
         "duration": _duration,
         "terrain": _terrain,
         "discipline": _discipline,
+        "participants": _participants
       };
 }
 
