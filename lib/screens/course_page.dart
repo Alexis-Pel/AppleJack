@@ -40,17 +40,19 @@ class _Page extends State<c_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Ajouter un cours"),
-      ),
       body: Center(
         child: SizedBox(
-        height: MediaQuery.of(context).size.height / 1.5,
+        height: MediaQuery.of(context).size.height / 1.35,
         width: MediaQuery.of(context).size.width / 2,
         child: Form(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+              Text("Ajouter un cours",
+                style: TextStyle(fontSize: 22, fontFamily: 'Poppins'),
+              ),
+              const SizedBox(height: 20),
+
             //Terrain Radio
             Column(
               children: [

@@ -18,7 +18,7 @@ class _Dashboard extends State<Dashboard> {
   // Cette methode ajoute nos evenements
   Card _addEventToDashboard(DashboardEvent data) {
       return Card(
-        color: Colors.orange,
+        color: Colors.white,
         margin: const EdgeInsets.all(10),
         elevation: 20,
         child:
