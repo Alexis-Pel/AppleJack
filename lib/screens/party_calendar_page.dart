@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project/Models/PartyModel.dart';
 import 'package:project/screens/party_page.dart';
+import 'package:mongo_dart/mongo_dart.dart' as m;
+
+import '../dbHelper/globals.dart';
 
 void main() async {
   runApp(const PartyCalendar());
@@ -34,11 +37,9 @@ class CalendarCard extends StatefulWidget {
 }
 
 class _CalendarCard extends State<CalendarCard> {
-  final Party _party;
   _CalendarCard(this._party);
-
-  // Change for real id
-  String _id = "123";
+  final Party _party;
+  final m.ObjectId _id = userLogged!.id;
   Icon _icon = const Icon(Icons.add, size: 40,);
 
   Future<void> joinLeaveParty(Party party) async {
