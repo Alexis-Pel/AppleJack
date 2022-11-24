@@ -61,28 +61,6 @@ class _AddUserPageState extends State<AddUserPage> {
                 ),
                 const SizedBox(height: 20),
 
-                //Name
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: TextField(
-                    controller: _nameController,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.deepPurple),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      hintText: 'Name',
-                      fillColor: Colors.grey[200],
-                      filled: true,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 7),
-
                 //Tel
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
