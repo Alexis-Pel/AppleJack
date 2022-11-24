@@ -10,7 +10,6 @@ var _cards = [];
 
 class MyAppCalendar extends StatelessWidget {
   const MyAppCalendar({super.key});
-
   static const tag = "Calendar";
 
   // This widget is the root of your application.
@@ -28,7 +27,6 @@ class MyAppCalendar extends StatelessWidget {
 
 class CalendarCard extends StatefulWidget {
   final Course _course;
-
   CalendarCard(this._course);
 
   @override
@@ -37,7 +35,6 @@ class CalendarCard extends StatefulWidget {
 
 class _CalendarCard extends State<CalendarCard> {
   final Course _course;
-
   _CalendarCard(this._course);
 
   //
@@ -100,7 +97,8 @@ class _CalendarCard extends State<CalendarCard> {
                         onPressed: () async {
                           await joinLeaveCourse(_course);
                         },
-                        child: _icon),
+                        child: _icon
+                    ),
                     Column(
                         verticalDirection: VerticalDirection.down,
                         mainAxisSize: MainAxisSize.min,
@@ -145,7 +143,6 @@ class _CalendarPageState extends State<CalendarPage> {
                   } else {
                     if (snapshot.hasData) {
                       var totalData = snapshot.data.length;
-                      print("Total Data : $totalData");
                       return ListView.builder(
                           itemCount: totalData,
                           itemBuilder: (context, index) {
@@ -157,7 +154,6 @@ class _CalendarPageState extends State<CalendarPage> {
                     }
                   }
                 })),
-
         //Add button
         floatingActionButton: ElevatedButton(
           onPressed: () async {

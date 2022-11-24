@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/Models/PartyModel.dart';
 import 'package:mongo_dart/mongo_dart.dart' as m;
+import 'package:project/screens/party_calendar_page.dart';
 import '../dbHelper/mongoDB.dart';
 
 void main() async {
@@ -16,22 +17,24 @@ class PartyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Add Party',
-      home: Page(),
+      home: s_Page(),
     );
   }
 }
 
-class Page extends StatefulWidget {
-  const Page({Key? key}) : super(key: key);
+class s_Page extends StatefulWidget {
+  const s_Page({Key? key}) : super(key: key);
+  static const tag = "party_page";
 
   @override
-  State<Page> createState() => _Page();
+  State<s_Page> createState() => _Page();
 }
 
-class _Page extends State<Page> {
+class _Page extends State<s_Page> {
   // Define variables
   final _formKey = GlobalKey<FormState>();
   String theme = ThemeParty.apero.name;
+  DateTime date = DateTime(2022, 1, 1, 0, 0, 0);
   TextEditingController partyMessageController = TextEditingController();
   TextEditingController partyImageController = TextEditingController();
 
@@ -73,6 +76,21 @@ Widget build(BuildContext context) {
                 },
                 ),
               ),
+              Container(
+                margin: const EdgeInsets.only(top: 20.0),
+                child: TextButton(
+                    onPressed: showDate,
+                    child: Column(
+                      children: [
+                        const Text("Selectionner la date"),
+                        Container(
+                          margin: const EdgeInsets.only(top: 10.0),
+                          child: Text(
+                              "${date.day}/${date.month}/${date.year} à ${date.hour}:${date.minute}"),
+                        ),
+                      ],
+                    )),
+              ),
               Form(
                 key: _formKey,
                   child: Column(
@@ -108,7 +126,7 @@ Widget build(BuildContext context) {
           ),
           TextButton(
               onPressed: () {
-                sendParty(Party( m.ObjectId(), theme, partyImageController.text, [], partyMessageController.text));
+                sendParty(Party( m.ObjectId(), theme, partyImageController.text, [], partyMessageController.text, date));
               }, 
               child: const Text('Send')
           )
@@ -130,5 +148,24 @@ Widget build(BuildContext context) {
         ),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void setDate(hour, date) {
+    if (hour != null && date != null) {
+      setState(() {
+        date = DateTime(date.year, date.month, date.day, hour.hour, hour.minute);
+      });
+    }
+  }
+
+  void showDate() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2022),
+      lastDate: DateTime(2100),
+    ).then((date) =>
+        showTimePicker(initialTime: TimeOfDay.now(), context: context)
+            .then((hour) => setDate(hour, date)));
   }
 }

@@ -15,6 +15,7 @@ class Party {
   String picture;
   String comment;
   List<dynamic> participant;
+  DateTime date;
 
   // Constructor
   Party(
@@ -23,6 +24,7 @@ class Party {
     this.picture,
     this.participant,
     this.comment,
+    this.date,
   );
 
   // Getters
@@ -39,6 +41,7 @@ class Party {
     json["picture"],
     json["participant"],
     json["comment"],
+    json["date"],
   );
 
   // Convert from Json
@@ -48,6 +51,7 @@ class Party {
     "picture": picture,
     "participant": participant,
     "comment": comment,
+    "date": date,
   };
 
 }
@@ -59,4 +63,15 @@ Future<List<Map<String, dynamic>>> getPartys() async {
 
 Future<void> createParty(Party party) async {
   var response = await MongoDatabase.createData(party.toJson(), PARTY_COLLECTION);
+}
+
+Future<List<Map<String, Object?>>?> getWeekParties() async {
+  var today = DateTime.now();
+  var aadays = (today.day - (today.day - today.weekday + 1));
+  var aaaa = Duration(days: aadays, hours: today.hour, minutes: today.minute);
+  var bbbb = Duration(days: 6 - aadays);
+  var before = today.subtract(aaaa);
+  var after = today.add(bbbb);
+  var result = await MongoDatabase.getAllBy({"date": {r"$gte": before, r"$lt": after}}, PARTY_COLLECTION);
+  return result;
 }

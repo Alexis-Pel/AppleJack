@@ -9,7 +9,6 @@ void main() async {
 }
 
 class CoursePage extends StatelessWidget {
-
   const CoursePage({super.key});
 
   // This widget is the root of your application.
