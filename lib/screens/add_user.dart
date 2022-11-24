@@ -45,7 +45,7 @@ class _AddUserPageState extends State<AddUserPage> {
                 SizedBox(
                   height: 100,
                   width: 100,
-                  child: Image.asset("assets/appleJackLogo.png"),
+                  child: Image.asset("assets/images/appleJackLogo.png"),
                 ),
                 const SizedBox(height: 10),
 
@@ -60,28 +60,6 @@ class _AddUserPageState extends State<AddUserPage> {
                   style: TextStyle(fontSize: 15, fontFamily: 'Poppins'),
                 ),
                 const SizedBox(height: 20),
-
-                //Name
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: TextField(
-                    controller: _nameController,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.deepPurple),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      hintText: 'Name',
-                      fillColor: Colors.grey[200],
-                      filled: true,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 7),
 
                 //Tel
                 Padding(
