@@ -35,7 +35,7 @@ class DashboardEvent {
 }
 
 Future<List<Map<String, dynamic>>> getDashboardEvents() async {
-  var result = MongoDatabase.getData(COMPETITION_COLLECTION);
+  var result = MongoDatabase.getData(DASHBOARDEVENT_COLLECTION);
   return result;
 }
 

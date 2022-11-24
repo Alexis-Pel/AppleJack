@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/Models/DashboardEventModel.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -9,25 +10,26 @@ class Dashboard extends StatefulWidget {
 }
 
 class _Dashboard extends State<Dashboard> {
-  List dashboardEventList = [];
-
-  void _addEventToDashboard() {
+  void _changeState() {
     setState(() {
-      dashboardEventList.add(Card(
+    });
+  }
+
+  // Cette methode ajoute nos evenements
+  Card _addEventToDashboard(DashboardEvent data) {
+      return Card(
         color: Colors.orange,
         margin: const EdgeInsets.all(10),
         elevation: 20,
         child:
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(""),
-              Text(""),
-              Text(""),
-            ],
-          ),
-      ));
-    });
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(data.message),
+            Text(data.type),
+          ],
+        ),
+      );
   }
 
   @override
@@ -35,23 +37,33 @@ class _Dashboard extends State<Dashboard> {
     // List data = ModalRoute.of(context)!.settings.arguments as List;
 
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {
-                _addEventToDashboard();
-              },
-              icon: const Icon(Icons.add)
-          )
-        ],
-      ),
-      body: ListView.builder(
-        itemCount: dashboardEventList.length,
-        itemBuilder: (context, index) {
-          return dashboardEventList[index];
+      // On utilise FutureBuilder car il s'agit d'une class asyncfonne
+      body: FutureBuilder(
+        future: getDashboardEvents(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if(snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            // Si nous avons de données, on ajoute les évenements
+            if(snapshot.hasData) {
+              var totalData = snapshot.data.length;
+              return ListView.builder(
+                  itemCount: totalData,
+                  itemBuilder: (context, index) {
+                    return _addEventToDashboard(
+                        DashboardEvent.fromJson(snapshot.data[index]
+                        )
+                    );
+                  },
+              );
+            } else {
+              return const Text("Donnés non disponibles");
+            }
+          }
         },
       ),
     );
-    throw UnimplementedError();
   }
 }
