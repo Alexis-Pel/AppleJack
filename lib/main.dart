@@ -3,6 +3,7 @@ import 'package:project/screens/add_user.dart';
 import 'package:project/screens/home.dart';
 import 'package:project/screens/horse_page.dart';
 import 'package:project/screens/login_page.dart';
+import 'package:project/screens/reset_password_page.dart';
 import 'dbHelper/mongoDB.dart';
 
 void main() async {
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         AddUserPage.tag: (context) => AddUserPage(),
         HorsePage.tag: (context) => HorsePage(),
         LoginPage.tag:(context)=>LoginPage(),
+        ResetPassword.tag:(context)=>ResetPassword(),
       },
       debugShowCheckedModeBanner: false,
       home: LoginPage(),
