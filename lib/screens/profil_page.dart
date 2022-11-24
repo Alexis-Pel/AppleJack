@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/dbHelper/globals.dart';
 
+import '../Models/UserModel.dart';
 import 'horse_page.dart';
 
 final _nameController = TextEditingController();
@@ -225,7 +226,7 @@ class _ProfilPageState extends State<ProfilPage> {
           TextButton(
 
             onPressed: () {
-              ;
+              verifResetPassword();
             },
             child:
             Padding(
@@ -255,5 +256,31 @@ class _ProfilPageState extends State<ProfilPage> {
       )
 
     );
+  }
+  Future<void> verifResetPassword() async{
+    if(_emailController.text.contains("@") && _emailController.text.isNotEmpty && _usernameController.text.isNotEmpty && _passwordController.text.isNotEmpty && _telController.text.isNotEmpty && _ageController.text.isNotEmpty && _linkController.text.isNotEmpty &&_imageController.text.isNotEmpty ) {
+
+      var result = await User.updateUser({"mail":_emailController.text},_usernameController.text,_emailController.text,_telController.text,_passwordController.text,_ageController.text,_linkController.text,_imageController.text);
+      
+      var snackBar = SnackBar(
+        content: const Text('Changement effectué'),
+        action: SnackBarAction(
+          label: 'Fermer',
+          onPressed: () {},
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+    else{
+      var snackBar = SnackBar(
+        content: const Text('Certains champs sont vide'),
+        action: SnackBarAction(
+          label: 'Fermer',
+          onPressed: () {},
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    };
+
   }
 }

@@ -119,7 +119,7 @@ class _ResetPasswordState extends State<ResetPassword> {
       Future<void> verifResetPassword() async{
         if(_emailController.text.contains("@") && _emailController.text.isNotEmpty) {
 
-          var result = await User.updateUser({"mail": _emailController.text},_passwordController.text);
+          var result = await User.updatePassword({"mail": _emailController.text},_passwordController.text);
           Navigator.pushNamed(context, "LoginPage");
           var snackBar = SnackBar(
             content: const Text('Changement effectué'),
