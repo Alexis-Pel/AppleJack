@@ -93,6 +93,7 @@ class ConcourCard extends StatefulWidget{
 
 class _ConcourCard extends State<ConcourCard>{
   final Competition competition;
+  String _selected = "";
 
   _ConcourCard(this.competition);
 
@@ -125,6 +126,8 @@ class _ConcourCard extends State<ConcourCard>{
                           ),
                           Text("Nom: ${competition.name}", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w800)),
                           Text("Adresse: ${competition.adress}", style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w800)),
+                          const SizedBox(height: 15,),
+                          TextButton(onPressed: () {}, child: Text("Participer", style: TextStyle(color: Colors.amberAccent),))
                         ])
                   ]),
             ],
