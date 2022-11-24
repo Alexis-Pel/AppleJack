@@ -34,7 +34,7 @@ class _Page extends State<s_Page> {
   // Define variables
   final _formKey = GlobalKey<FormState>();
   String theme = ThemeParty.apero.name;
-  DateTime date = DateTime(2022, 1, 1, 0, 0, 0);
+  DateTime _date = DateTime(2022, 1, 1, 0, 0, 0);
   TextEditingController partyMessageController = TextEditingController();
   TextEditingController partyImageController = TextEditingController();
 
@@ -86,7 +86,7 @@ Widget build(BuildContext context) {
                         Container(
                           margin: const EdgeInsets.only(top: 10.0),
                           child: Text(
-                              "${date.day}/${date.month}/${date.year} à ${date.hour}:${date.minute}"),
+                              "${_date.day}/${_date.month}/${_date.year} à ${_date.hour}:${_date.minute}"),
                         ),
                       ],
                     )),
@@ -126,7 +126,9 @@ Widget build(BuildContext context) {
           ),
           TextButton(
               onPressed: () {
-                sendParty(Party( m.ObjectId(), theme, partyImageController.text, [], partyMessageController.text, date));
+                sendParty(Party(m.ObjectId(), theme, partyImageController.text, [], partyMessageController.text, _date));
+                setState(() {
+                });
               }, 
               child: const Text('Send')
           )
@@ -153,7 +155,7 @@ Widget build(BuildContext context) {
   void setDate(hour, date) {
     if (hour != null && date != null) {
       setState(() {
-        date = DateTime(date.year, date.month, date.day, hour.hour, hour.minute);
+        _date = DateTime(date.year, date.month, date.day, hour.hour, hour.minute);
       });
     }
   }

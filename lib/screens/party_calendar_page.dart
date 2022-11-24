@@ -36,11 +36,18 @@ class CalendarCard extends StatefulWidget {
 class _CalendarCard extends State<CalendarCard> {
   final Party _party;
   _CalendarCard(this._party);
+
   // Change for real id
   String _id = "123";
   Icon _icon = const Icon(Icons.add, size: 40,);
 
   Future<void> joinLeaveParty(Party party) async {
+    if (party.participant.contains(_id)) {
+      party.participant.remove(_id);
+    } else {
+      party.participant.add(_id);
+    }
+    await updateCourse(party.toJson(), party.id.toString());
     var snackBar = SnackBar(
       content: const Text('Participation prise en compte'),
       action: SnackBarAction(
@@ -59,7 +66,7 @@ class _CalendarCard extends State<CalendarCard> {
       return Colors.amber;
     } else {
       _icon = const Icon(Icons.add, size: 40,);
-      return Colors.deepPurple;
+      return Colors.teal;
     }
   }
 
@@ -91,12 +98,17 @@ class _CalendarCard extends State<CalendarCard> {
                    verticalDirection: VerticalDirection.down,
                    mainAxisSize: MainAxisSize.min,
                    children: <Widget>[
-                     Image.network(_party.picture),
                      Text(
                        "${_party.date.day}/${_party.date.month}/${_party.date.year} à ${_party.date.hour}:${_party.date.minute}"
                      ),
                      Text("Type de soirée : ${_party.theme}"),
-                     Text("Commentaire: ${_party.comment}")
+                     Text("Commentaire: ${_party.comment}"),
+                     Image.network(
+                         _party.picture,
+                         height: 60,
+                         width: 90,
+                         fit: BoxFit.fill
+                     ),
                    ],
                  )
                ],
@@ -134,10 +146,10 @@ class _PartyCalendarPageState extends State<PartyCalendarPage> {
               if (snapshot.hasData) {
                 var totalData = snapshot.data.length;
                 return ListView.builder(
-                  itemCount: totalData,
+                    itemCount: totalData,
                     itemBuilder: (context, index) {
                       return CalendarCard(
-                        Party.fromJson(snapshot.data[index])
+                          Party.fromJson(snapshot.data[index])
                       );
                     });
               } else {

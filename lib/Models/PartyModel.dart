@@ -56,7 +56,7 @@ class Party {
 
 }
 
-Future<List<Map<String, dynamic>>> getPartys() async {
+Future<List<Map<String, dynamic>>> getParties() async {
   var result = MongoDatabase.getData(PARTY_COLLECTION);
   return result;
 }
@@ -65,11 +65,15 @@ Future<void> createParty(Party party) async {
   var response = await MongoDatabase.createData(party.toJson(), PARTY_COLLECTION);
 }
 
+Future<void> updateCourse(Map<String, dynamic> data, String id) async {;
+MongoDatabase.update(data, id, PARTY_COLLECTION);
+}
+
 Future<List<Map<String, Object?>>?> getWeekParties() async {
   var today = DateTime.now();
   var aadays = (today.day - (today.day - today.weekday + 1));
   var aaaa = Duration(days: aadays, hours: today.hour, minutes: today.minute);
-  var bbbb = Duration(days: 6 - aadays);
+  var bbbb = Duration(days: 100 - aadays);
   var before = today.subtract(aaaa);
   var after = today.add(bbbb);
   var result = await MongoDatabase.getAllBy({"date": {r"$gte": before, r"$lt": after}}, PARTY_COLLECTION);

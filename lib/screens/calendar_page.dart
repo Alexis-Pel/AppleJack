@@ -41,7 +41,6 @@ class _CalendarCard extends State<CalendarCard> {
   //TO CHANGE
   //
   String _id = "123";
-
   Icon _icon = const Icon(Icons.add, size: 40);
 
   Future<void> joinLeaveCourse(Course course) async {
@@ -70,7 +69,7 @@ class _CalendarCard extends State<CalendarCard> {
       return Colors.amber;
     } else {
       _icon = const Icon(Icons.add, size: 40);
-      return Colors.deepPurple;
+      return Colors.teal;
     }
   }
 
