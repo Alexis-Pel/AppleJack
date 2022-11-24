@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:project/screens/add_user.dart';
 import '../Models/UserModel.dart';
 import 'home.dart';
+import '../dbHelper/globals.dart';
 
 class LoginPage extends StatefulWidget {
+  static const tag = "LoginPage";
   const LoginPage({super.key});
 
   //const LoginPage({Key? key}) : super ({key: key});
@@ -31,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 150,
                   width: 150,
-                  child: Image.asset("assets/appleJackLogo.png"),
+                  child: Image.asset("assets/images/appleJackLogo.png"),
                 ),
                 const SizedBox(height: 30),
 
@@ -160,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
       //User connected
       try{
         User user = User.fromJson(result!);
-        goToHome();
+        goToHome(user);
       }
       // Email or Password incorrect
       catch(e){
@@ -180,7 +182,8 @@ class _LoginPageState extends State<LoginPage> {
     Navigator.pushNamed(context, AddUserPage.tag);
   }
 
-  void goToHome() {
+  void goToHome(User user) {
+    userLogged = user;
     Navigator.pushNamed(context, Home.tag);
   }
 }
