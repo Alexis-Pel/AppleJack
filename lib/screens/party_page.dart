@@ -38,115 +38,124 @@ class _Page extends State<s_Page> {
   TextEditingController partyImageController = TextEditingController();
 
   @override
-Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Ajouter une soirée à thème'),
+        title: const Text(
+            style: TextStyle(fontSize: 16, fontFamily: 'Poppins'),
+            'Ajouter une soirée à thème'),
       ),
       body: SingleChildScrollView(
         child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text("Veuillez choisir un type de soirée :"),
-          Column(
-            children: <Widget>[
-              ListTile(
-                title: const Text("Apèro"),
-                leading: Radio<String>(
-                  value: ThemeParty.apero.name,
-                  groupValue: theme,
-                  onChanged: (String? value) {
-                    setState(() {
-                      theme = value!;
-                    });
-                  },
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const SizedBox(height: 10),
+            Text("Veuillez choisir un type de soirée :"),
+            const SizedBox(height: 10),
+            Column(
+              children: <Widget>[            const SizedBox(height: 10),
+                const SizedBox(height: 10),
+                ListTile(
+                  title: const Text("Apèro"),
+                  leading: Radio<String>(
+                    value: ThemeParty.apero.name,
+                    groupValue: theme,
+                    onChanged: (String? value) {
+                      setState(() {
+                        theme = value!;
+                      });
+                    },
+                  ),
                 ),
-              ),
-              ListTile(
-                title: const Text("Repas"),
-                leading: Radio<String>(
-                  value: ThemeParty.repas.name,
-                  groupValue: theme,
-                  onChanged: (String? value) {
-                    setState(() {
-                      theme = value!;
-                    });
-                },
+                const SizedBox(height: 10),
+                ListTile(
+                  title: const Text("Repas"),
+                  leading: Radio<String>(
+                    value: ThemeParty.repas.name,
+                    groupValue: theme,
+                    onChanged: (String? value) {
+                      setState(() {
+                        theme = value!;
+                      });
+                    },
+                  ),
                 ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 20.0),
-                child: TextButton(
-                    onPressed: showDate,
+                Container(
+                  margin: const EdgeInsets.only(top: 20.0),
+                  child: TextButton(
+                      onPressed: showDate,
+                      child: Column(
+                        children: [
+                          const Text("Selectionner la date"),
+                          Container(
+                            margin: const EdgeInsets.only(top: 10.0),
+                            child: Text(
+                                "${_date.day}/${_date.month}/${_date.year} à ${_date.hour}:${_date.minute}"),
+                          ),
+                        ],
+                      )),
+                ),
+                Form(
+                    key: _formKey,
                     child: Column(
                       children: [
-                        const Text("Selectionner la date"),
-                        Container(
-                          margin: const EdgeInsets.only(top: 10.0),
-                          child: Text(
-                              "${_date.day}/${_date.month}/${_date.year} à ${_date.hour}:${_date.minute}"),
+                        TextFormField(
+                          controller: partyMessageController,
+                          decoration: const InputDecoration(
+                              labelText:
+                                  'Ajouter un message pour indiquer ce que vous comptez apporter'),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                        ),
+                        TextFormField(
+                          controller: partyImageController,
+                          decoration: const InputDecoration(
+                              labelText:
+                                  "Ajoutez l'url d'une image de votre soirée à thème"),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
                         ),
                       ],
-                    )),
-              ),
-              Form(
-                key: _formKey,
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        controller: partyMessageController,
-                        decoration: const InputDecoration(
-                            labelText: 'Ajouter un message pour indiquer ce que vous comptez apporter'
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                      ),
-                      TextFormField(
-                        controller: partyImageController,
-                        decoration: const InputDecoration(
-                            labelText: "Ajoutez l'url d'une image de votre soirée à thème"
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                      ),
-                    ],
-                  )
-              )
-            ],
-          ),
-          TextButton(
-              onPressed: () {
-                sendParty(Party(m.ObjectId(), theme, partyImageController.text, [], partyMessageController.text, _date));
-                setState(() {
-                });
-              }, 
-              child: const Text('Send')
-          )
-        ],
-      ),
+                    ))
+              ],
+            ),
+            TextButton(
+                onPressed: () {
+                  sendParty(Party(
+                      m.ObjectId(),
+                      theme,
+                      partyImageController.text,
+                      [],
+                      partyMessageController.text,
+                      _date));
+                  setState(() {});
+                },
+                child: const Text('Send'))
+          ],
+        ),
       ),
     );
   }
-  
+
   // Here we create a new party event
   void sendParty(Party party) {
     createParty(party);
-    
+
     var snackBar = SnackBar(
-        content: const Text('Soirée à thème ajouté'),
-        action: SnackBarAction(
-          label: 'Close',
-          onPressed: () {},
-        ),
+      content: const Text('Soirée à thème ajouté'),
+      action: SnackBarAction(
+        label: 'Close',
+        onPressed: () {},
+      ),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
@@ -154,7 +163,8 @@ Widget build(BuildContext context) {
   void setDate(hour, date) {
     if (hour != null && date != null) {
       setState(() {
-        _date = DateTime(date.year, date.month, date.day, hour.hour, hour.minute);
+        _date =
+            DateTime(date.year, date.month, date.day, hour.hour, hour.minute);
       });
     }
   }

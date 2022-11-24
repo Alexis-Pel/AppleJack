@@ -39,15 +39,17 @@ class _Page extends State<c_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          style: TextStyle(fontSize: 16, fontFamily: 'Poppins'),
+          "Ajouter un cours",
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text("Ajouter un cours",
-              style: TextStyle(fontSize: 22, fontFamily: 'Poppins'),
-            ),
             const SizedBox(height: 15),
-
             //Terrain Radio
             Column(
               children: [
