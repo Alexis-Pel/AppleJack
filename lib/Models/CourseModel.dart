@@ -14,9 +14,11 @@ class Course {
   String _discipline;
   DateTime _date;
   int _duration;
+  List<dynamic> _participants;
 
-  //Constructor
-  Course(this._date, this._duration, this._terrain, this._discipline, this._id);
+   //Constructor
+
+  Course(this._date, this._duration, this._terrain, this._discipline, this._id, this._participants);
 
   // Getters
   String get terrain => _terrain;
@@ -27,9 +29,13 @@ class Course {
 
   int get duration => _duration;
 
+  List<dynamic> get participants => _participants;
+
+  ObjectId get id => _id;
+
   //Map from Json
   factory Course.fromJson(Map<String, dynamic> json) => Course(json['date'],
-      json['duration'], json['terrain'], json['discipline'], json['_id']);
+      json['duration'], json['terrain'], json['discipline'], json['_id'], json['participants']);
 
   //Convert to json
   Map<String, dynamic> toJson() => {
@@ -38,6 +44,7 @@ class Course {
         "duration": _duration,
         "terrain": _terrain,
         "discipline": _discipline,
+        "participants": _participants
       };
 }
 
@@ -48,4 +55,23 @@ Future<List<Map<String, dynamic>>> getCourses() async {
 
 Future<void> createCourse(Course course) async {
   var response = await MongoDatabase.createData(course.toJson(), COURSE_COLLECTION);
+}
+
+Future<void> updateCourse(Map<String, dynamic> data, String id) async {;
+  MongoDatabase.update(data, id, COURSE_COLLECTION);
+}
+
+Future<List<Map<String, Object?>>?> getWeekCourses() async {
+  var today = DateTime.now();
+  var aadays = (today.day - (today.day - today.weekday + 1));
+  var aaaa = Duration(days: aadays, hours: today.hour, minutes: today.minute);
+  var bbbb = Duration(days: 6 - aadays);
+
+
+  var before = today.subtract(aaaa);
+  var after = today.add(bbbb);
+
+  var result = await MongoDatabase.getAllBy({"date": {r"$gte": before, r"$lt": after}}, COURSE_COLLECTION);
+
+  return result;
 }

@@ -42,6 +42,33 @@ class MongoDatabase{
     }
   }
 
+  static Future<List<Map<String, Object?>>?> getAllBy(Map<String, dynamic> data,String collectionString) async {
+    try {
+      var collection = db.collection(collectionString);
+      var result = await collection.find(data).toList();
+      return result!;
+    }
+    catch(e){
+      print(e);
+      return null;
+    }
+  }
+
+  static Future<void> update(Map<String, dynamic> data, String id, String collectionString) async {
+    try {
+      var collection = db.collection(collectionString);
+      var result = await collection.findOne({"_id": id});
+      result = data;
+      var response = await collection.save(result);
+      inspect(response);
+      return;
+    }
+    catch(e){
+      print(e);
+      return;
+    }
+  }
+
 
 
 

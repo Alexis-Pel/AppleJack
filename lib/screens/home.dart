@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:project/screens/calendar_page.dart';
 import 'package:project/screens/concours_page.dart';
 import 'package:project/screens/course_page.dart';
 import 'package:project/screens/soiree_page.dart';
 import '../dbHelper/mongoDB.dart';
 import 'package:project/screens/dashboard.dart';
 
-
 void main() async {
   //WidgetsFlutterBinding.ensureInitialized();
   await MongoDatabase.connect();
-  runApp( const Home());
+  runApp(const Home());
 }
 
 class Home extends StatelessWidget {
@@ -30,21 +30,65 @@ class Home extends StatelessWidget {
           appBar: AppBar(
             bottom: const TabBar(
               tabs: [
-                Tab(icon: Icon(Icons.add_chart),),
-                Tab(icon: Icon(Icons.add_circle),),
-                Tab(icon: Icon(Icons.add_box_outlined)),
-                Tab(icon: Icon(Icons.add)),
-                Tab(icon: Icon(Icons.add_circle_outline))
+                // Home
+                Tab(
+                    icon: Icon(Icons.home),
+                    child: Text(
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                      "Actualité",
+                      maxLines: 1,
+                    )),
+
+                //Parties
+                Tab(
+                    icon: Icon(Icons.local_fire_department),
+                    child: Text(
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                      "Soirée",
+                      maxLines: 1,
+                    )),
+
+                //Concours
+                Tab(
+                    icon: Icon(Icons.sports_score),
+                    child: Text(
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                      "Concours",
+                      maxLines: 1,
+                    )),
+
+                //Courses
+                Tab(
+                  icon: Icon(Icons.calendar_month_outlined),
+                  child: Text(
+                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                    "Cours",
+                    maxLines: 1,
+                  ),
+                ),
+
+                //Profile
+                Tab(
+                  icon: Icon(Icons.account_circle),
+                  child: Text(
+                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                    "Profil",
+                    maxLines: 1,
+                  ),
+                ),
               ],
             ),
             title: const Text('Applejack'),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
               Dashboard(),
-              CoursePage(),
               PartyPage(),
               ContestPage(),
+              MyAppCalendar(),
               Dashboard(),
             ],
           ),
@@ -53,4 +97,3 @@ class Home extends StatelessWidget {
     );
   }
 }
-

@@ -9,6 +9,7 @@ void main() async {
 }
 
 class CoursePage extends StatelessWidget {
+
   const CoursePage({super.key});
 
   // This widget is the root of your application.
@@ -16,19 +17,20 @@ class CoursePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Add Course',
-      home: Page(),
+      home: c_Page(),
     );
   }
 }
 
-class Page extends StatefulWidget {
-  const Page({Key? key}) : super(key: key);
+class c_Page extends StatefulWidget {
+  static const tag = "course_page";
+  const c_Page({Key? key}) : super(key: key);
 
   @override
-  State<Page> createState() => _Page();
+  State<c_Page> createState() => _Page();
 }
 
-class _Page extends State<Page> {
+class _Page extends State<c_Page> {
   //Define Variables
   String _terrain = Terrain.carriere.name;
   String _discipline = Discipline.dressage.name;
@@ -184,7 +186,7 @@ class _Page extends State<Page> {
             ),
             TextButton(
                 onPressed: () {
-                  sendCourse(Course(_date, _duration, _terrain, _discipline, m.ObjectId()));
+                  sendCourse(Course(_date, _duration, _terrain, _discipline, m.ObjectId(), []));
                   setState(() {
                     //_cards = result;
                   });
