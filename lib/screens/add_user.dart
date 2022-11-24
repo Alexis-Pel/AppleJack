@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:project/screens/login_page.dart';
 import '../Models/UserModel.dart';
 import 'home.dart';
+import 'package:mongo_dart/mongo_dart.dart' as m;
 
 class AddUserPage extends StatefulWidget {
   static const tag = "AddUserPage";
@@ -18,8 +20,13 @@ class _AddUserPageState extends State<AddUserPage> {
   final _nameController = TextEditingController();
   final _telController = TextEditingController();
   final _emailController = TextEditingController();
+  final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _ageController = TextEditingController();
+  final _linkController = TextEditingController();
+  final _imageController = TextEditingController();
+  final _id= m.ObjectId();
+  final role = 0;
 
   //String _role = Role.
 
@@ -119,6 +126,27 @@ class _AddUserPageState extends State<AddUserPage> {
                   ),
                 ),
                 const SizedBox(height: 7),
+                //Username
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextField(
+                    controller: _usernameController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.deepPurple),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      hintText: 'Username',
+                      fillColor: Colors.grey[200],
+                      filled: true,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 7),
 
                 //Password
                 Padding(
@@ -163,8 +191,49 @@ class _AddUserPageState extends State<AddUserPage> {
                   ),
                 ),
                 const SizedBox(height: 7),
-
-                Container(
+                //link
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextField(
+                    controller: _linkController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.deepPurple),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      hintText: 'Link vers le FFE',
+                      fillColor: Colors.grey[200],
+                      filled: true,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 7),
+                // image
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextField(
+                    controller: _imageController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.deepPurple),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      hintText: 'Link for the Profil Picture',
+                      fillColor: Colors.grey[200],
+                      filled: true,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 7),
+               /* Container(
                   child: Column(
                     children: <Widget>[
                       const Text("Rôle"),
@@ -203,11 +272,12 @@ class _AddUserPageState extends State<AddUserPage> {
                     ],
                   ),
                 ),
-
+*/
 
                 TextButton(
+
                   onPressed: () {
-                    //addUser();
+                   User.createUsers((User(id: _id, tel: _telController.text, mail: _emailController.text, username: _usernameController.text, password: _passwordController.text, age: _ageController.text, link: _linkController.text , picture: _imageController.text, role: 0)));
                   },
                   child:
                   Padding(
