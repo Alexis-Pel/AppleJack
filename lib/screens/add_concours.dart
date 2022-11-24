@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/Models/CompetitionModel.dart';
 import 'package:mongo_dart/mongo_dart.dart' as m;
-
-import 'concours_page.dart';
+import 'contest_page.dart';
 
 void main() async {
   //WidgetsFlutterBinding.ensureInitialized();
