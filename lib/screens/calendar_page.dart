@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mongo_dart/mongo_dart.dart' as m;
 import 'package:project/screens/course_page.dart';
 import '../Models/CourseModel.dart';
-import 'package:project/dbHelper/globals.dart';
 
 void main() async {
   runApp(const MyAppCalendar());
@@ -45,7 +43,7 @@ class _CalendarCard extends State<CalendarCard> {
   //
   //TO CHANGE
   //
-  final m.ObjectId _id = userLogged!.id;
+  String _id = "123";
 
   Icon _icon = const Icon(Icons.add, size: 40);
 

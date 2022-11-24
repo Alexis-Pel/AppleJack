@@ -45,7 +45,7 @@ class _AddUserPageState extends State<AddUserPage> {
                 SizedBox(
                   height: 100,
                   width: 100,
-                  child: Image.asset("assets/images/appleJackLogo.png"),
+                  child: Image.asset("assets/appleJackLogo.png"),
                 ),
                 const SizedBox(height: 10),
 
@@ -60,6 +60,28 @@ class _AddUserPageState extends State<AddUserPage> {
                   style: TextStyle(fontSize: 15, fontFamily: 'Poppins'),
                 ),
                 const SizedBox(height: 20),
+
+                //Name
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.deepPurple),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      hintText: 'Name',
+                      fillColor: Colors.grey[200],
+                      filled: true,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 7),
 
                 //Tel
                 Padding(
@@ -255,8 +277,8 @@ class _AddUserPageState extends State<AddUserPage> {
                 TextButton(
 
                   onPressed: () {
-                    register();
-                   },
+                   User.createUsers((User(id: _id, tel: _telController.text, mail: _emailController.text, username: _usernameController.text, password: _passwordController.text, age: _ageController.text, link: _linkController.text , picture: _imageController.text, role: 0)));
+                  },
                   child:
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 70.0),
@@ -291,32 +313,5 @@ class _AddUserPageState extends State<AddUserPage> {
     Navigator.pushNamed(context, LoginPage.tag);
   }
 */
-  Future<void> register() async {
-    if(_emailController.text.contains("@") && _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty && _telController.text.isNotEmpty && _usernameController.text.isNotEmpty && _ageController.text.isNotEmpty && _linkController.text.isNotEmpty && _imageController.text.isNotEmpty) {
-      // Register User to Database
-
-       var result =  User.createUsers((User(id: _id, tel: _telController.text, mail: _emailController.text, username: _usernameController.text, password: _passwordController.text, age: _ageController.text, link: _linkController.text , picture: _imageController.text, role: 0)));
-      //Register Sucessfull
-        AfterRegister();
-    }
-    else{
-      // Formulaire incomplet
-        var snackBar = SnackBar(
-          content: const Text('Inscription incomplete'),
-          action: SnackBarAction(
-            label: 'Fermer',
-            onPressed: () {},
-          ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      }
-
-  }
-
-  void AfterRegister() {
-    Navigator.pushNamed(context, LoginPage.tag);
-  }
-
-
 
 }
