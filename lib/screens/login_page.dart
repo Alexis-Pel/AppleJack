@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 150,
                   width: 150,
-                  child: Image.asset("assets/appleJackLogo.png"),
+                  child: Image.asset("assets/images/appleJackLogo.png"),
                 ),
                 const SizedBox(height: 30),
 
