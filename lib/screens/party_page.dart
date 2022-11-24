@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:project/Models/DashboardEventModel.dart';
 import 'package:project/Models/PartyModel.dart';
 import 'package:mongo_dart/mongo_dart.dart' as m;
 import '../dbHelper/mongoDB.dart';
+import '../Models/DashboardEventModel.dart';
 
 void main() async {
   await MongoDatabase.connect();
@@ -138,12 +140,22 @@ class _Page extends State<s_Page> {
                       partyMessageController.text,
                       _date));
                   setState(() {});
+                  sendDashboardEvent(DashboardEvent(
+                      id: m.ObjectId(),
+                      type: theme,
+                      message: 'Une nouvelle soirée à été crée')
+                  );
                 },
                 child: const Text('Send'))
           ],
         ),
       ),
     );
+  }
+
+  // Here we create a new event for the dashboard
+  void sendDashboardEvent(DashboardEvent dashboardEvent) {
+    createDashboardEvent(dashboardEvent);
   }
 
   // Here we create a new party event
