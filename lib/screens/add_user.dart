@@ -277,8 +277,8 @@ class _AddUserPageState extends State<AddUserPage> {
                 TextButton(
 
                   onPressed: () {
-                   User.createUsers((User(id: _id, tel: _telController.text, mail: _emailController.text, username: _usernameController.text, password: _passwordController.text, age: _ageController.text, link: _linkController.text , picture: _imageController.text, role: 0)));
-                  },
+                    register();
+                   },
                   child:
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 70.0),
@@ -313,5 +313,32 @@ class _AddUserPageState extends State<AddUserPage> {
     Navigator.pushNamed(context, LoginPage.tag);
   }
 */
+  Future<void> register() async {
+    if(_emailController.text.contains("@") && _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty && _telController.text.isNotEmpty && _usernameController.text.isNotEmpty && _ageController.text.isNotEmpty && _linkController.text.isNotEmpty && _imageController.text.isNotEmpty) {
+      // Register User to Database
+
+       var result =  User.createUsers((User(id: _id, tel: _telController.text, mail: _emailController.text, username: _usernameController.text, password: _passwordController.text, age: _ageController.text, link: _linkController.text , picture: _imageController.text, role: 0)));
+      //Register Sucessfull
+        AfterRegister();
+    }
+    else{
+      // Formulaire incomplet
+        var snackBar = SnackBar(
+          content: const Text('Inscription incomplete'),
+          action: SnackBarAction(
+            label: 'Fermer',
+            onPressed: () {},
+          ),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+
+  }
+
+  void AfterRegister() {
+    Navigator.pushNamed(context, LoginPage.tag);
+  }
+
+
 
 }
