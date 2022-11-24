@@ -7,14 +7,14 @@ void main() async {
   runApp(const CoursePage());
 }
 
-class PartyPage extends StatelessWidget {
-  const PartyPage({super.key});
+class ContestPage extends StatelessWidget {
+  const ContestPage({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Add Party',
+      title: 'Add Contest',
       home: Page(),
     );
   }
@@ -30,9 +30,9 @@ class Page extends StatefulWidget {
 class _Page extends State<Page> {
 
   @override
-Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('Ajouter une soirée'),
+      body: Text('Ajouter un concours'),
     );
   }
 }

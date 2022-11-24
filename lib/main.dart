@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project/screens/add_user.dart';
 import 'package:project/screens/home.dart';
 import 'package:project/screens/login_page.dart';
-
 import 'dbHelper/mongoDB.dart';
 
 void main() async {
@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         Home.tag: (context) => Home(),
-        MyApp.tag: (context) => const MyApp()
+        MyApp.tag: (context) => const MyApp(),
+        AddUserPage.tag: (context) => AddUserPage(),
       },
       debugShowCheckedModeBanner: false,
       home: LoginPage(),

@@ -3,6 +3,10 @@
 //     final horse = horseFromJson(jsonString);
 
 import 'dart:convert';
+import 'package:mongo_dart/mongo_dart.dart';
+
+import '../dbHelper/constant.dart';
+import '../dbHelper/mongoDB.dart';
 
 Horse horseFromJson(String str) => Horse.fromJson(json.decode(str));
 
@@ -23,7 +27,7 @@ class Horse {
     required this.dp,
   });
 
-  String id;
+  ObjectId id;
   String photo;
   String name;
   String age;
@@ -62,4 +66,12 @@ class Horse {
     "stable": stable,
     "DP": dp,
   };
+  static Future<List<Map<String,dynamic>>> getHorses() async{
+    var result =  MongoDatabase.getData(HORSE_COLLECTION);
+    return result;
+  }
+
+  static void createHorse(Horse horse) {
+    MongoDatabase.createData(horse.toJson(),HORSE_COLLECTION);
+  }
 }

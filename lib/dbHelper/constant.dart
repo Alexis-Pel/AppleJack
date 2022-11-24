@@ -2,3 +2,7 @@ const MONGO_URL = "mongodb+srv://coding:coding@atlascluster.nmc6qpn.mongodb.net/
 
 const USERS_COLLECTION = "Users";
 const COURSE_COLLECTION = "Courses";
+const HORSE_COLLECTION = "Horses";
+const PARTY_COLLECTION = "Partys";
+const COMPETITION_COLLECTION = "Competitions";
+const DASHBOARDEVENT_COLLECTION = "DashboardEvent";
