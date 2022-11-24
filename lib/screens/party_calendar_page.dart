@@ -99,11 +99,15 @@ class _CalendarCard extends State<CalendarCard> {
                    verticalDirection: VerticalDirection.down,
                    mainAxisSize: MainAxisSize.min,
                    children: <Widget>[
+                     const SizedBox(height: 5),
                      Text(
                        "${_party.date.day}/${_party.date.month}/${_party.date.year} à ${_party.date.hour}:${_party.date.minute}"
                      ),
+                     const SizedBox(height: 5),
                      Text("Type de soirée : ${_party.theme}"),
+                     const SizedBox(height: 5),
                      Text("Commentaire: ${_party.comment}"),
+                     const SizedBox(height: 5),
                      Image.network(
                          _party.picture,
                          height: 60,
