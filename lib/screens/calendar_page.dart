@@ -36,9 +36,22 @@ class CalendarCard extends StatelessWidget {
       return Colors.red;
     }
   }*/
+
+  //
+  //TO CHANGE
+  //
   String _id = "123";
 
   Icon _icon = const Icon(Icons.add, size: 40);
+
+  void joinLeaveCourse(Course course){
+    if (course.participants.contains(_id)){
+      // delete DATABASE
+    }
+    else{
+      // Add to database
+    }
+  }
 
   MaterialColor setPerso(){
     if (_course.participants.contains(_id)){
@@ -70,7 +83,7 @@ class CalendarCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     TextButton(onPressed: (){
-                      print("Pressed");
+                      joinLeaveCourse(_course);
                       },
                         child: _icon),
                     Column(
