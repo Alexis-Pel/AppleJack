@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:project/screens/add_user.dart';
+import 'package:project/screens/reset_password_page.dart';
 import '../Models/UserModel.dart';
 import '../dbHelper/globals.dart';
 import 'home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-
+  static const tag = "LoginPage";
   //const LoginPage({Key? key}) : super ({key: key});
 
   @override
@@ -119,7 +120,33 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                 ),
                 const SizedBox(height: 50),
+                TextButton(
 
+                  onPressed: () {
+                    Navigator.pushNamed(context, ResetPassword.tag);
+                     },
+                  child:
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 70.0),
+                    child: Container(
+                        padding: const EdgeInsets.all(7),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: const Center(
+                          child:Text(
+                            'Reinitaliser le mot de passe',
+                            style: TextStyle(
+                              color: Colors.deepPurple,
+                              fontFamily: 'Poppins',
+                              fontSize: 15,
+                            ),
+                          ),
+                        )),
+                  ),
+                ),
+                const SizedBox(height: 50),
                 TextButton(
                   onPressed: () {
                     addUser();
@@ -181,7 +208,9 @@ class _LoginPageState extends State<LoginPage> {
   void addUser() {
     Navigator.pushNamed(context, AddUserPage.tag);
   }
-
+  void resetPassword(){
+    Navigator.pushNamed(context, ResetPassword.tag);
+  }
   void goToHome() {
     Navigator.pushNamed(context, Home.tag);
   }

@@ -53,6 +53,17 @@ class MongoDatabase{
       return null;
     }
   }
+  static Future<Map<String, dynamic>?> getDataOf(Map<String, dynamic> data,String collectionString) async {
+    try {
+      var collection = db.collection(collectionString);
+      var result = await collection.find(data).toList();
+      return result!;
+    }
+    catch(e){
+      print(e);
+      return null;
+    }
+  }
 
   static Future<void> update(Map<String, dynamic> data, String id, String collectionString) async {
     try {
