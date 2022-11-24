@@ -261,7 +261,14 @@ class _ProfilPageState extends State<ProfilPage> {
     if(_emailController.text.contains("@") && _emailController.text.isNotEmpty && _usernameController.text.isNotEmpty && _passwordController.text.isNotEmpty && _telController.text.isNotEmpty && _ageController.text.isNotEmpty && _linkController.text.isNotEmpty &&_imageController.text.isNotEmpty ) {
 
       var result = await User.updateUser({"mail":_emailController.text},_usernameController.text,_emailController.text,_telController.text,_passwordController.text,_ageController.text,_linkController.text,_imageController.text);
-      
+      userLogged!.age=  _ageController.text;
+      userLogged!.picture =_imageController.text;
+      userLogged!.link= _linkController.text;
+      userLogged!.password=_passwordController.text;
+      userLogged!.tel=_passwordController.text;
+      userLogged!.mail= _emailController.text;
+      userLogged!.username=_usernameController.text;
+
       var snackBar = SnackBar(
         content: const Text('Changement effectué'),
         action: SnackBarAction(
