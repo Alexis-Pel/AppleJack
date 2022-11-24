@@ -61,6 +61,5 @@ Future<List<Map<String, Object?>>?> getWeekCourses() async {
   var before = today.subtract(aaaa);
   var after = today.add(bbbb);
   var result = await MongoDatabase.getAllBy({"date": {r"$gte": before, r"$lt": after}}, COURSE_COLLECTION);
-
   return result;
 }

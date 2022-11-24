@@ -34,8 +34,10 @@ class CalendarCard extends StatefulWidget {
   @override
   State<CalendarCard> createState() => _CalendarCard(this._course);
 }
-class _CalendarCard extends State<CalendarCard>{
+
+class _CalendarCard extends State<CalendarCard> {
   final Course _course;
+
   _CalendarCard(this._course);
 
   //
@@ -46,10 +48,9 @@ class _CalendarCard extends State<CalendarCard>{
   Icon _icon = const Icon(Icons.add, size: 40);
 
   Future<void> joinLeaveCourse(Course course) async {
-    if (course.participants.contains(_id)){
+    if (course.participants.contains(_id)) {
       course.participants.remove(_id);
-    }
-    else{
+    } else {
       course.participants.add(_id);
     }
     await updateCourse(course.toJson(), course.id.toString());
@@ -66,12 +67,11 @@ class _CalendarCard extends State<CalendarCard>{
     });
   }
 
-  MaterialColor setPerso(){
-    if (_course.participants.contains(_id)){
+  MaterialColor setPerso() {
+    if (_course.participants.contains(_id)) {
       _icon = const Icon(Icons.exit_to_app_outlined, size: 40);
       return Colors.amber;
-    }
-    else{
+    } else {
       _icon = const Icon(Icons.add, size: 40);
       return Colors.deepPurple;
     }
@@ -96,9 +96,10 @@ class _CalendarCard extends State<CalendarCard>{
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    TextButton(onPressed: () async {
-                      await joinLeaveCourse(_course);
-                    },
+                    TextButton(
+                        onPressed: () async {
+                          await joinLeaveCourse(_course);
+                        },
                         child: _icon),
                     Column(
                         verticalDirection: VerticalDirection.down,
@@ -118,7 +119,6 @@ class _CalendarCard extends State<CalendarCard>{
       ),
     );
   }
-
 }
 
 class CalendarPage extends StatefulWidget {
@@ -131,42 +131,47 @@ class CalendarPage extends StatefulWidget {
 }
 
 class _CalendarPageState extends State<CalendarPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: FutureBuilder(
-              future: getWeekCourses(),
-              builder: (context, AsyncSnapshot snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else {
-                  if (snapshot.hasData) {
-                    var totalData = snapshot.data.length;
-                    print("Total Data : $totalData");
-                    return ListView.builder(
-                        itemCount: totalData,
-                        itemBuilder: (context, index) {
-                          return CalendarCard(
-                              Course.fromJson(snapshot.data[index]));
-                        });
+        body: Center(
+            child: FutureBuilder(
+                future: getWeekCourses(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
                   } else {
-                    return const Center(child: Text("No Data Disponible"));
+                    if (snapshot.hasData) {
+                      var totalData = snapshot.data.length;
+                      print("Total Data : $totalData");
+                      return ListView.builder(
+                          itemCount: totalData,
+                          itemBuilder: (context, index) {
+                            return CalendarCard(
+                                Course.fromJson(snapshot.data[index]));
+                          });
+                    } else {
+                      return const Center(child: Text("No Data Disponible"));
+                    }
                   }
-                }
-              })),
+                })),
 
-      //Add button
-      floatingActionButton: ElevatedButton(
-        onPressed: () {
-          Navigator.pushNamed(context, c_Page.tag);
-        },
-        style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple, shape: const CircleBorder(), padding: const EdgeInsets.all(15),),
-        child: const Icon(Icons.add),
-      )
-    );
+        //Add button
+        floatingActionButton: ElevatedButton(
+          onPressed: () async {
+            await Navigator.pushNamed(context, c_Page.tag)
+                .then((value) => setState(() {}));
+          },
+          style: ElevatedButton.styleFrom(
+            elevation: 10,
+            shadowColor: Colors.black,
+            backgroundColor: Colors.deepPurple,
+            shape: const CircleBorder(),
+            padding: const EdgeInsets.all(15),
+          ),
+          child: const Icon(Icons.add),
+        ));
   }
 }
