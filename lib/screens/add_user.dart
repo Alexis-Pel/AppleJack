@@ -45,7 +45,7 @@ class _AddUserPageState extends State<AddUserPage> {
                 SizedBox(
                   height: 100,
                   width: 100,
-                  child: Image.asset("assets/appleJackLogo.png"),
+                  child: Image.asset("assets/images/appleJackLogo.png"),
                 ),
                 const SizedBox(height: 10),
 
@@ -191,28 +191,6 @@ class _AddUserPageState extends State<AddUserPage> {
                   ),
                 ),
                 const SizedBox(height: 7),
-                //link
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: TextField(
-                    controller: _linkController,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.deepPurple),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      hintText: 'Link vers le FFE',
-                      fillColor: Colors.grey[200],
-                      filled: true,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 7),
-                // image
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: TextField(
@@ -226,7 +204,7 @@ class _AddUserPageState extends State<AddUserPage> {
                         borderSide: const BorderSide(color: Colors.deepPurple),
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      hintText: 'Link for the Profil Picture',
+                      hintText: 'Profil Picture',
                       fillColor: Colors.grey[200],
                       filled: true,
                     ),

@@ -1,6 +1,18 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:project/dbHelper/globals.dart';
+
+final _nameController = TextEditingController();
+var _telController = TextEditingController();
+var _emailController = TextEditingController();
+var _usernameController = TextEditingController();
+var _passwordController = TextEditingController();
+var _ageController = TextEditingController();
+var _linkController = TextEditingController();
+var _imageController = TextEditingController();
+
+
 
 
 class ProfilPage extends StatefulWidget {
@@ -13,6 +25,15 @@ class ProfilPage extends StatefulWidget {
 class _ProfilPageState extends State<ProfilPage> {
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      _telController.text = userLogged!.tel;
+      _emailController.text = userLogged!.mail;
+      _usernameController.text = userLogged!.username;
+      _passwordController.text = userLogged!.password;
+      _ageController.text = userLogged!.age;
+      _linkController.text = userLogged!.link;
+      _imageController.text = userLogged!.picture;
+    });
     return Scaffold(
 
       body: Container(
@@ -66,7 +87,9 @@ class _ProfilPageState extends State<ProfilPage> {
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: Column(
         children: [
+          // Username
           TextField(
+            controller: _usernameController,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.white),
@@ -82,7 +105,9 @@ class _ProfilPageState extends State<ProfilPage> {
             ),
           ),
           const SizedBox(height: 7),
+          // Email
           TextField(
+            controller: _emailController,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.white),
@@ -98,7 +123,9 @@ class _ProfilPageState extends State<ProfilPage> {
             ),
           ),
           const SizedBox(height: 7),
+          // Password
           TextField(
+            controller: _passwordController,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.white),
@@ -113,8 +140,10 @@ class _ProfilPageState extends State<ProfilPage> {
               filled: true,
             ),
           ),
+          // Tel
           const SizedBox(height: 7),
           TextField(
+            controller: _telController,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.white),
@@ -130,7 +159,9 @@ class _ProfilPageState extends State<ProfilPage> {
             ),
           ),
           const SizedBox(height: 7),
+          // Age
           TextField(
+            controller: _ageController,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.white),
@@ -146,7 +177,9 @@ class _ProfilPageState extends State<ProfilPage> {
             ),
           ),
           const SizedBox(height: 7),
+          // link FFE
           TextField(
+            controller: _linkController,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.white),
@@ -162,7 +195,9 @@ class _ProfilPageState extends State<ProfilPage> {
             ),
           ),
           const SizedBox(height: 7),
+          // profil Picture
           TextField(
+            controller: _imageController,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.white),

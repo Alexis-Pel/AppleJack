@@ -21,10 +21,12 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Applejack',
+      title: 'AppleJack',
       theme: ThemeData(
+        fontFamily: 'Poppins',
         primarySwatch: Colors.deepPurple,
       ),
+
       home: DefaultTabController(
         length: 5,
         child: Scaffold(
@@ -36,7 +38,7 @@ class Home extends StatelessWidget {
                     icon: Icon(Icons.home),
                     child: Text(
                       style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                          TextStyle(fontSize: 9, fontFamily: 'Poppins'),
                       "Actualité",
                       maxLines: 1,
                     )),
@@ -46,7 +48,7 @@ class Home extends StatelessWidget {
                     icon: Icon(Icons.local_fire_department),
                     child: Text(
                       style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                          TextStyle(fontSize: 9, fontFamily: 'Poppins'),
                       "Soirée",
                       maxLines: 1,
                     )),
@@ -56,7 +58,7 @@ class Home extends StatelessWidget {
                     icon: Icon(Icons.sports_score),
                     child: Text(
                       style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                          TextStyle(fontSize: 9, fontFamily: 'Poppins'),
                       "Concours",
                       maxLines: 1,
                     )),
@@ -65,7 +67,8 @@ class Home extends StatelessWidget {
                 Tab(
                   icon: Icon(Icons.calendar_month_outlined),
                   child: Text(
-                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                    style:
+                      TextStyle(fontSize: 9, fontFamily: 'Poppins'),
                     "Cours",
                     maxLines: 1,
                   ),
@@ -75,14 +78,17 @@ class Home extends StatelessWidget {
                 Tab(
                   icon: Icon(Icons.account_circle),
                   child: Text(
-                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 9, fontFamily: 'Poppins'),
                     "Profil",
                     maxLines: 1,
                   ),
                 ),
               ],
             ),
-            title: const Text('Applejack'),
+            title: const Text('APPLEJACK',
+              style: TextStyle(fontSize: 24,fontFamily: 'Poppins'),
+            ),
+
           ),
           body: const TabBarView(
             children: [
