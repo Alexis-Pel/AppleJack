@@ -204,7 +204,7 @@ class _AddUserPageState extends State<AddUserPage> {
                         borderSide: const BorderSide(color: Colors.deepPurple),
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      hintText: 'Link for the Profil Picture',
+                      hintText: 'Profil Picture',
                       fillColor: Colors.grey[200],
                       filled: true,
                     ),
