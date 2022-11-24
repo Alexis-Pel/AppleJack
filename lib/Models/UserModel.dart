@@ -68,15 +68,24 @@ class User {
   static Future<Map<String, dynamic>?> getOneUser(Map<String, dynamic> json) async {
     return await MongoDatabase.getOne(json, USERS_COLLECTION);
   }
-  static Future<Map<String, dynamic>?> updateUser(Map<String, dynamic> json,String password) async {
+  static Future<Map<String, dynamic>?> updatePassword(Map<String, dynamic> json,String password) async {
     var user = await MongoDatabase.getOne(json,USERS_COLLECTION);
     User test = User.fromJson(user!);
     test.password = password;
 
     MongoDatabase.update(test.toJson(), test.id.toString(), USERS_COLLECTION);
   }
-
-
-
+  static Future<Map<String, dynamic>?> updateUser(Map<String, dynamic> json,String username,String email,String tel,String password,String age,String link,String picture) async {
+    var user = await MongoDatabase.getOne(json,USERS_COLLECTION);
+    User test = User.fromJson(user!);
+    test.username = username;
+    test.mail = email;
+    test.tel= tel;
+    test.password=password;
+    test.age= age;
+    test.link=link;
+    test.picture=picture;
+    MongoDatabase.update(test.toJson(), test.id.toString(), USERS_COLLECTION);
+  }
 }
 

@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextButton(
 
                   onPressed: () {
-                    Navigator.pushNamed(context, ResetPassword.tag);
+                    resetPassword();
                      },
                   child:
                   Padding(
