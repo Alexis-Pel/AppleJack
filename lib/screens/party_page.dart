@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/Models/PartyModel.dart';
 import 'package:mongo_dart/mongo_dart.dart' as m;
-import 'package:project/screens/party_calendar_page.dart';
 import '../dbHelper/mongoDB.dart';
 
 void main() async {
