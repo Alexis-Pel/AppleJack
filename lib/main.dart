@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
         Home.tag: (context) => Home(),
         MyApp.tag: (context) => MyApp(),
         AddUserPage.tag: (context) => AddUserPage(),
-        LoginPage.tag: (context) => LoginPage(),
       },
       debugShowCheckedModeBanner: false,
       home: LoginPage(),
