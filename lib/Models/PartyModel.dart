@@ -1,41 +1,47 @@
-// To parse this JSON data, do
-//
-//     final party = partyFromJson(jsonString);
-
-import 'dart:convert';
-
 import 'package:mongo_dart/mongo_dart.dart';
-
 import '../dbHelper/constant.dart';
 import '../dbHelper/mongoDB.dart';
+import 'dart:convert';
 
 Party partyFromJson(String str) => Party.fromJson(json.decode(str));
-
 String partyToJson(Party data) => json.encode(data.toJson());
 
-class Party {
-  Party({
-    required this.id,
-    required this.theme,
-    required this.picture,
-    required this.participant,
-    required this.comment,
-  });
+enum ThemeParty {apero, repas}
 
+class Party {
+  // Variables
   ObjectId id;
   String theme;
   String picture;
-  String participant;
   String comment;
+  List<dynamic> participant;
 
-  factory Party.fromJson(Map<String, dynamic> json) => Party(
-    id: json["_id"],
-    theme: json["theme"],
-    picture: json["picture"],
-    participant: json["participant"],
-    comment: json["comment"],
+  // Constructor
+  Party(
+    this.id,
+    this.theme,
+    this.picture,
+    this.participant,
+    this.comment,
   );
 
+  // Getters
+  String get _theme => theme;
+  String get _picture => picture;
+  String get _comment => comment;
+  ObjectId get _id => id;
+  List<dynamic> get _participant => participant;
+
+  // Map from Json
+  factory Party.fromJson(Map<String, dynamic> json) => Party(
+    json["_id"],
+    json["theme"],
+    json["picture"],
+    json["participant"],
+    json["comment"],
+  );
+
+  // Convert from Json
   Map<String, dynamic> toJson() => {
     "_id": id,
     "theme": theme,
@@ -43,12 +49,14 @@ class Party {
     "participant": participant,
     "comment": comment,
   };
-  Future<List<Map<String, dynamic>>> getPartys() async {
-    var result = MongoDatabase.getData(PARTY_COLLECTION);
-    return result;
-  }
 
-  Future<void> createParty(Party party) async {
-    var response = await MongoDatabase.createData(party.toJson(), PARTY_COLLECTION);
-  }
+}
+
+Future<List<Map<String, dynamic>>> getPartys() async {
+  var result = MongoDatabase.getData(PARTY_COLLECTION);
+  return result;
+}
+
+Future<void> createParty(Party party) async {
+  var response = await MongoDatabase.createData(party.toJson(), PARTY_COLLECTION);
 }

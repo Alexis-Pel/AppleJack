@@ -1,10 +1,8 @@
 import 'package:mongo_dart/mongo_dart.dart';
-
 import '../dbHelper/constant.dart';
 import '../dbHelper/mongoDB.dart';
 
 enum Terrain { carriere, manege }
-
 enum Discipline { dressage, saut_obstacle, endurance }
 
 class Course {
@@ -16,21 +14,15 @@ class Course {
   int _duration;
   List<dynamic> _participants;
 
-   //Constructor
-
+  //Constructor
   Course(this._date, this._duration, this._terrain, this._discipline, this._id, this._participants);
 
   // Getters
   String get terrain => _terrain;
-
   String get discipline => _discipline;
-
   DateTime get date => _date;
-
   int get duration => _duration;
-
   List<dynamic> get participants => _participants;
-
   ObjectId get id => _id;
 
   //Map from Json
@@ -66,11 +58,8 @@ Future<List<Map<String, Object?>>?> getWeekCourses() async {
   var aadays = (today.day - (today.day - today.weekday + 1));
   var aaaa = Duration(days: aadays, hours: today.hour, minutes: today.minute);
   var bbbb = Duration(days: 6 - aadays);
-
-
   var before = today.subtract(aaaa);
   var after = today.add(bbbb);
-
   var result = await MongoDatabase.getAllBy({"date": {r"$gte": before, r"$lt": after}}, COURSE_COLLECTION);
 
   return result;

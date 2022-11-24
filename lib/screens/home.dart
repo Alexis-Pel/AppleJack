@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project/screens/calendar_page.dart';
-import 'package:project/screens/concours_page.dart';
+import 'package:project/screens/contest_page.dart';
 import 'package:project/screens/course_page.dart';
-import 'package:project/screens/soiree_page.dart';
+import 'package:project/screens/party_page.dart';
 import '../dbHelper/mongoDB.dart';
 import 'package:project/screens/dashboard.dart';
 
