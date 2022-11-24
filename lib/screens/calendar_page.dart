@@ -49,7 +49,6 @@ class _CalendarCard extends State<CalendarCard>{
   Icon _icon = const Icon(Icons.add, size: 40);
 
   Future<void> joinLeaveCourse(Course course) async {
-    print(_id);
     if (course.participants.contains(_id)){
       course.participants.remove(_id);
     }
