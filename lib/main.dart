@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/screens/add_user.dart';
 import 'package:project/screens/home.dart';
+import 'package:project/screens/horse_page.dart';
 import 'package:project/screens/login_page.dart';
 import 'dbHelper/mongoDB.dart';
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         Home.tag: (context) => Home(),
         MyApp.tag: (context) => MyApp(),
         AddUserPage.tag: (context) => AddUserPage(),
+        HorsePage.tag: (context) => HorsePage(),
       },
       debugShowCheckedModeBanner: false,
       home: LoginPage(),
