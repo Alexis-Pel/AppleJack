@@ -35,9 +35,9 @@ class Horse {
   String breed;
   String gender;
   String speciality;
-  String owner;
+  ObjectId owner;
   String stable;
-  String dp;
+  List<dynamic> dp;
 
   factory Horse.fromJson(Map<String, dynamic> json) => Horse(
     id: json["_id"],
@@ -68,6 +68,11 @@ class Horse {
   };
   static Future<List<Map<String,dynamic>>> getHorses() async{
     var result =  MongoDatabase.getData(HORSE_COLLECTION);
+    return result;
+  }
+
+  static Future<List<Map<String,dynamic>>?> getHorsesOwner(ObjectId id) async{
+    var result =  await MongoDatabase.getAllBy({"owner": id}, HORSE_COLLECTION);
     return result;
   }
 

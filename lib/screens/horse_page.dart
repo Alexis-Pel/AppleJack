@@ -38,6 +38,8 @@ class HorsePage extends StatefulWidget {
 class _HorsePage extends State<HorsePage> {
   _HorsePage();
 
+  final User userlogged = userLogged!;
+
   @override
   Widget build(BuildContext context) {
 
@@ -72,7 +74,7 @@ class _HorsePage extends State<HorsePage> {
   }
 
   getHorses() async {
-    await Horse.getHorses();
+    return await Horse.getHorsesOwner(userlogged.id);
   }
 }
 
@@ -89,8 +91,6 @@ class HorseCard extends StatefulWidget{
 class _HorseCard extends State<HorseCard>{
   final Horse _horse;
   _HorseCard(this._horse);
-
-  final User userlogged = userLogged!;
 
 
   @override
