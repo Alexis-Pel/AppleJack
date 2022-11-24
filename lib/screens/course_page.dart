@@ -40,16 +40,13 @@ class _Page extends State<c_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text("Ajouter un cours"),
       ),
-      body: Center(
-        child: SizedBox(
-        height: MediaQuery.of(context).size.height / 1.5,
-        width: MediaQuery.of(context).size.width / 2,
-        child: Form(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
+      body: SingleChildScrollView(
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
             //Terrain Radio
             Column(
@@ -134,7 +131,6 @@ class _Page extends State<c_Page> {
                 ],
               ),
             ),
-
             //Date Picker
             Container(
               margin: const EdgeInsets.only(top: 20.0),
@@ -151,7 +147,6 @@ class _Page extends State<c_Page> {
                     ],
                   )),
             ),
-
             //Duration
             Container(
               margin: const EdgeInsets.only(top: 20.0, bottom: 20),
@@ -197,8 +192,8 @@ class _Page extends State<c_Page> {
                 ),
                 child: Text("Send"))
           ],
-        )),
-      )),
+        ),
+      ),
     );
   }
 
