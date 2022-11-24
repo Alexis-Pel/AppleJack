@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/screens/add_user.dart';
 import '../Models/UserModel.dart';
+import '../dbHelper/globals.dart';
 import 'home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -160,6 +161,7 @@ class _LoginPageState extends State<LoginPage> {
       //User connected
       try{
         User user = User.fromJson(result!);
+        userLogged = user;
         goToHome();
       }
       // Email or Password incorrect
