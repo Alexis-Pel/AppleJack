@@ -1,41 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:project/dbHelper/mongoDB.dart';
+import 'package:project/screens/course_page.dart';
 import '../Models/CourseModel.dart';
 
 void main() async {
-  await MongoDatabase.connect();
-  runApp(const MyApp());
+  runApp(const MyAppCalendar());
 }
 
 var _cards = [];
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyAppCalendar extends StatelessWidget {
+  const MyAppCalendar({super.key});
 
-  static const tag = "main";
+  static const tag = "Calendar";
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      routes: {
+        c_Page.tag: (context) => const c_Page(),
+      },
       debugShowCheckedModeBanner: false,
       home: CalendarPage(),
     );
   }
 }
 
-class CalendarCard extends StatelessWidget {
+class CalendarCard extends StatefulWidget {
   final Course _course;
 
-  CalendarCard(this._course, {super.key});
+  CalendarCard(this._course);
 
-/*  Color getMyColor() {
-    if (animal.name == "dog") {
-      return Colors.green;
-    } else{
-      return Colors.red;
-    }
-  }*/
+  @override
+  State<CalendarCard> createState() => _CalendarCard(this._course);
+}
+class _CalendarCard extends State<CalendarCard>{
+  final Course _course;
+  _CalendarCard(this._course);
 
   //
   //TO CHANGE
@@ -44,13 +45,25 @@ class CalendarCard extends StatelessWidget {
 
   Icon _icon = const Icon(Icons.add, size: 40);
 
-  void joinLeaveCourse(Course course){
+  Future<void> joinLeaveCourse(Course course) async {
     if (course.participants.contains(_id)){
-      // delete DATABASE
+      course.participants.remove(_id);
     }
     else{
-      // Add to database
+      course.participants.add(_id);
     }
+    await updateCourse(course.toJson(), course.id.toString());
+    //Display snackbar
+    var snackBar = SnackBar(
+      content: const Text('Participation prise en compte'),
+      action: SnackBarAction(
+        label: 'Close',
+        onPressed: () {},
+      ),
+    );
+    setState(() {
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
   }
 
   MaterialColor setPerso(){
@@ -63,6 +76,7 @@ class CalendarCard extends StatelessWidget {
       return Colors.deepPurple;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -82,9 +96,9 @@ class CalendarCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    TextButton(onPressed: (){
-                      joinLeaveCourse(_course);
-                      },
+                    TextButton(onPressed: () async {
+                      await joinLeaveCourse(_course);
+                    },
                         child: _icon),
                     Column(
                         verticalDirection: VerticalDirection.down,
@@ -104,6 +118,7 @@ class CalendarCard extends StatelessWidget {
       ),
     );
   }
+
 }
 
 class CalendarPage extends StatefulWidget {
@@ -143,6 +158,15 @@ class _CalendarPageState extends State<CalendarPage> {
                   }
                 }
               })),
+
+      //Add button
+      floatingActionButton: ElevatedButton(
+        onPressed: () {
+          Navigator.pushNamed(context, c_Page.tag);
+        },
+        style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple, shape: const CircleBorder(), padding: const EdgeInsets.all(15),),
+        child: const Icon(Icons.add),
+      )
     );
   }
 }

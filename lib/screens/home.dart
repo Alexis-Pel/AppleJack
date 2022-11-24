@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/screens/calendar_page.dart';
 import 'package:project/screens/concours_page.dart';
 import 'package:project/screens/course_page.dart';
 import 'package:project/screens/soiree_page.dart';
@@ -25,7 +26,7 @@ class Home extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
       home: DefaultTabController(
-        length: 5,
+        length: 6,
         child: Scaffold(
           appBar: AppBar(
             bottom: const TabBar(
@@ -34,18 +35,20 @@ class Home extends StatelessWidget {
                 Tab(icon: Icon(Icons.add_circle),),
                 Tab(icon: Icon(Icons.add_box_outlined)),
                 Tab(icon: Icon(Icons.add)),
-                Tab(icon: Icon(Icons.add_circle_outline))
+                Tab(icon: Icon(Icons.add_circle_outline)),
+                Tab(icon: Icon(Icons.calendar_month_outlined), child:Text(style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),"Cours", maxLines: 1,),)
               ],
             ),
             title: const Text('Applejack'),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
               Dashboard(),
               CoursePage(),
               PartyPage(),
               ContestPage(),
               Dashboard(),
+              MyAppCalendar(),
             ],
           ),
         ),

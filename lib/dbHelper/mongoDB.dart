@@ -54,6 +54,21 @@ class MongoDatabase{
     }
   }
 
+  static Future<void> update(Map<String, dynamic> data, String id, String collectionString) async {
+    try {
+      var collection = db.collection(collectionString);
+      var result = await collection.findOne({"_id": id});
+      result = data;
+      var response = await collection.save(result);
+      inspect(response);
+      return;
+    }
+    catch(e){
+      print(e);
+      return;
+    }
+  }
+
 
 
 

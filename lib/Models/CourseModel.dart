@@ -31,6 +31,8 @@ class Course {
 
   List<dynamic> get participants => _participants;
 
+  ObjectId get id => _id;
+
   //Map from Json
   factory Course.fromJson(Map<String, dynamic> json) => Course(json['date'],
       json['duration'], json['terrain'], json['discipline'], json['_id'], json['participants']);
@@ -53,6 +55,10 @@ Future<List<Map<String, dynamic>>> getCourses() async {
 
 Future<void> createCourse(Course course) async {
   var response = await MongoDatabase.createData(course.toJson(), COURSE_COLLECTION);
+}
+
+Future<void> updateCourse(Map<String, dynamic> data, String id) async {;
+  MongoDatabase.update(data, id, COURSE_COLLECTION);
 }
 
 Future<List<Map<String, Object?>>?> getWeekCourses() async {
