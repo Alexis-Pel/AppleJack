@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/screens/add_horse.dart';
 import 'package:project/screens/add_user.dart';
 import 'package:project/screens/home.dart';
 import 'package:project/screens/horse_page.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         MyApp.tag: (context) => MyApp(),
         AddUserPage.tag: (context) => AddUserPage(),
         HorsePage.tag: (context) => HorsePage(),
+        AddHorsePage.tag: (context) => AddHorsePage(),
         LoginPage.tag:(context)=>LoginPage(),
       },
       debugShowCheckedModeBanner: false,

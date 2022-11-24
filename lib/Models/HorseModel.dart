@@ -76,7 +76,8 @@ class Horse {
     return result;
   }
 
-  static void createHorse(Horse horse) {
-    MongoDatabase.createData(horse.toJson(),HORSE_COLLECTION);
+  static Future<void> createHorse(Horse horse) async {
+    print("envois");
+    await MongoDatabase.createData(horse.toJson(),HORSE_COLLECTION);
   }
 }

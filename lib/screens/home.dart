@@ -8,6 +8,7 @@ import 'package:project/screens/profil_page.dart';
 import '../dbHelper/mongoDB.dart';
 import 'package:project/screens/dashboard.dart';
 
+import 'add_horse.dart';
 import 'horse_page.dart';
 
 void main() async {
@@ -25,6 +26,7 @@ class Home extends StatelessWidget {
     return MaterialApp(
       routes: {
         HorsePage.tag: (context) => HorsePage(),
+        AddHorsePage.tag: (context) => AddHorsePage(),
       },
       debugShowCheckedModeBanner: false,
       title: 'AppleJack',
