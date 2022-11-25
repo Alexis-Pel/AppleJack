@@ -56,8 +56,9 @@ class _CommentsPage extends State<CommentsPage> {
       body: Center(
         child: Column(
           children: [
+            SizedBox(height: 20,),
             SizedBox(
-              height: 90,
+              height: 50,
               child: TextButton(
                 onPressed: () {
                   Navigator.popAndPushNamed(context, PartyCalendar.tag);
@@ -65,8 +66,9 @@ class _CommentsPage extends State<CommentsPage> {
                 child: Text("Retour", style: TextStyle(color: Colors.blue)),
               ),
             ),
+            SizedBox(height: 10,),
             SizedBox(
-              height: MediaQuery.of(context).size.height/1.45,
+              height: MediaQuery.of(context).size.height/1.20,
               child:ListView.builder(
                   itemCount: _party.comments!.length,
                   itemBuilder: (context, index) {
