@@ -5,6 +5,7 @@ import 'package:project/screens/course_page.dart';
 import 'package:project/screens/party_calendar_page.dart';
 import 'package:project/screens/party_page.dart';
 import 'package:project/screens/profil_page.dart';
+import 'package:project/screens/user_page.dart';
 import '../dbHelper/mongoDB.dart';
 import 'package:project/screens/dashboard.dart';
 
@@ -27,6 +28,7 @@ class Home extends StatelessWidget {
       routes: {
         HorsePage.tag: (context) => HorsePage(),
         AddHorsePage.tag: (context) => AddHorsePage(),
+        UserPage.tag:(context)=>UserPage(),
       },
       debugShowCheckedModeBanner: false,
       title: 'AppleJack',

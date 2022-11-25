@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/dbHelper/globals.dart';
+import 'package:project/screens/user_page.dart';
 
 import '../Models/UserModel.dart';
 import 'horse_page.dart';
@@ -36,8 +37,10 @@ class _ProfilPageState extends State<ProfilPage> {
     });
     return MaterialApp(
       routes: {
+        UserPage.tag: (context) => const UserPage(),
         HorsePage.tag: (context) => const HorsePage(),
         ProfilPage.tag: (context) => const ProfilPage(),
+
       },
 
       home: Container(
@@ -69,7 +72,7 @@ class _ProfilPageState extends State<ProfilPage> {
                         ],
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: NetworkImage("https://media.istockphoto.com/id/1386479313/fr/photo/heureuse-femme-daffaires-afro-am%C3%A9ricaine-mill%C3%A9naire-posant-isol%C3%A9e-sur-du-blanc.jpg?s=612x612&w=is&k=20&c=k1GZ5uX3tp-AEqmgF1zvBeqSQIaIrqxKWjaNGTXTWqI="),
+                          image: NetworkImage(userLogged!.picture),
                           fit: BoxFit.cover,
                       ),
                     )),
@@ -244,25 +247,45 @@ class _ProfilPageState extends State<ProfilPage> {
                   )),
             ),
           ),
-          TextButton(onPressed: () async { await Navigator.pushNamed(context, HorsePage.tag)
-              .then((value) => setState(() {}));}, child: Text("Chevaux"))
-
+          adminButton(),
         ],
       )
 
     );
   }
-  Future<void> verifResetPassword() async{
-    if(_emailController.text.contains("@") && _emailController.text.isNotEmpty && _usernameController.text.isNotEmpty && _passwordController.text.isNotEmpty && _telController.text.isNotEmpty && _ageController.text.isNotEmpty && _linkController.text.isNotEmpty &&_imageController.text.isNotEmpty ) {
 
-      var result = await User.updateUser({"mail":_emailController.text},_usernameController.text,_emailController.text,_telController.text,_passwordController.text,_ageController.text,_linkController.text,_imageController.text);
-      userLogged!.age=  _ageController.text;
-      userLogged!.picture =_imageController.text;
-      userLogged!.link= _linkController.text;
-      userLogged!.password=_passwordController.text;
-      userLogged!.tel=_passwordController.text;
-      userLogged!.mail= _emailController.text;
-      userLogged!.username=_usernameController.text;
+  TextButton adminButton(){
+    if(userLogged!.role==1){
+      return TextButton(onPressed: () async { await Navigator.pushNamed(context, UserPage.tag)
+          .then((value) => setState(() {}));}, child: Text("Les cavaliers"));
+    }
+    return TextButton(onPressed: () async { await Navigator.pushNamed(context, HorsePage.tag)
+        .then((value) => setState(() {}));}, child: Text("Chevaux"));
+  }
+
+  Future<void> verifResetPassword() async {
+    if (_emailController.text.contains("@") &&
+        _emailController.text.isNotEmpty &&
+        _usernameController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty && _telController.text.isNotEmpty &&
+        _ageController.text.isNotEmpty && _linkController.text.isNotEmpty &&
+        _imageController.text.isNotEmpty) {
+      var result = await User.updateUser(
+          {"mail": _emailController.text},
+          _usernameController.text,
+          _emailController.text,
+          _telController.text,
+          _passwordController.text,
+          _ageController.text,
+          _linkController.text,
+          _imageController.text);
+      userLogged!.age = _ageController.text;
+      userLogged!.picture = _imageController.text;
+      userLogged!.link = _linkController.text;
+      userLogged!.password = _passwordController.text;
+      userLogged!.tel = _passwordController.text;
+      userLogged!.mail = _emailController.text;
+      userLogged!.username = _usernameController.text;
 
       var snackBar = SnackBar(
         content: const Text('Changement effectué'),
@@ -273,7 +296,7 @@ class _ProfilPageState extends State<ProfilPage> {
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
-    else{
+    else {
       var snackBar = SnackBar(
         content: const Text('Certains champs sont vide'),
         action: SnackBarAction(
@@ -283,6 +306,5 @@ class _ProfilPageState extends State<ProfilPage> {
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     };
-
   }
 }
