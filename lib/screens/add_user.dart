@@ -169,7 +169,7 @@ class _AddUserPageState extends State<AddUserPage> {
                    createDashboardEvent(DashboardEvent(
                        id: m.ObjectId(),
                        type: _usernameController.text,
-                       message: 'Un nouveau utilisateur à rejoint Applejack !',
+                       message: 'Un nouveau utilisateur a rejoint Applejack !',
                    ));
                   },
                   child:
