@@ -4,6 +4,7 @@ import 'package:project/screens/party_page.dart';
 import 'package:mongo_dart/mongo_dart.dart' as m;
 
 import '../dbHelper/globals.dart';
+import 'comments_page.dart';
 
 void main() async {
   runApp(const PartyCalendar());
@@ -13,6 +14,7 @@ var _partyCards = [];
 
 class PartyCalendar extends StatelessWidget {
   const PartyCalendar({super.key});
+
   static const tag = "partyCalendar";
 
   // This widget is the root of your application.
@@ -21,6 +23,7 @@ class PartyCalendar extends StatelessWidget {
     return MaterialApp(
       routes: {
         s_Page.tag: (context) => const s_Page(),
+        MyAppComments.tag: (context) => MyAppComments(),
       },
       debugShowCheckedModeBanner: false,
       home: PartyCalendarPage(),
@@ -30,6 +33,7 @@ class PartyCalendar extends StatelessWidget {
 
 class CalendarCard extends StatefulWidget {
   final Party _party;
+
   CalendarCard(this._party);
 
   @override
@@ -38,9 +42,14 @@ class CalendarCard extends StatefulWidget {
 
 class _CalendarCard extends State<CalendarCard> {
   _CalendarCard(this._party);
+
   final Party _party;
   final m.ObjectId _id = userLogged!.id;
-  Icon _icon = const Icon(Icons.add, size: 40,);
+  Icon _icon = const Icon(
+    Icons.add,
+    size: 40,
+    color: Colors.white,
+  );
 
   Future<void> joinLeaveParty(Party party) async {
     if (party.participant.contains(_id)) {
@@ -62,75 +71,93 @@ class _CalendarCard extends State<CalendarCard> {
   }
 
   MaterialColor setPartyCardColor() {
-    if(_party.participant.contains(_id)) {
-      _icon = const Icon(Icons.exit_to_app_outlined, size: 40,);
+    if (_party.participant.contains(_id)) {
+      _icon = const Icon(
+        Icons.exit_to_app_outlined,
+        size: 40,
+      );
       return Colors.amber;
     } else {
-      _icon = const Icon(Icons.add, size: 40,);
+      _icon = const Icon(
+        Icons.add,
+        size: 40,
+        color: Colors.white,
+      );
       return Colors.teal;
     }
   }
 
-  TextButton adminButton(){
-    if(userLogged!.role==1){
-      return TextButton(onPressed: () {
-        Party.deleteParty(this._party.id).then((_) => setState(() {}));
-      }, child: Icon(Icons.remove,color: Colors.deepPurple,));
+  TextButton adminButton() {
+    if (userLogged!.role == 1) {
+      return TextButton(
+          onPressed: () {
+            Party.deleteParty(this._party.id).then((_) => setState(() {}));
+          },
+          child: Icon(
+            Icons.remove,
+            color: Colors.deepPurple,
+          ));
     }
-    return  TextButton(
+    return TextButton(
         onPressed: () async {
           await joinLeaveParty(_party);
         },
-        child: _icon
-    );
+        child: _icon);
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-     child: Card(
-       color: setPartyCardColor(),
-       margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-       child: SizedBox(
-         width: MediaQuery.of(context).size.width,
-         height: 150,
-         child: Column(
-           mainAxisAlignment: MainAxisAlignment.spaceAround,
-           verticalDirection: VerticalDirection.down,
-           mainAxisSize: MainAxisSize.max,
-           children: <Widget>[
-             Row(
-               mainAxisSize: MainAxisSize.max,
-               mainAxisAlignment: MainAxisAlignment.spaceAround,
-               children: [
-                 adminButton(),
-                 Column(
-                   verticalDirection: VerticalDirection.down,
-                   mainAxisSize: MainAxisSize.min,
-                   children: <Widget>[
-                     const SizedBox(height: 5),
-                     Text(
-                       "${_party.date.day}/${_party.date.month}/${_party.date.year} à ${_party.date.hour}:${_party.date.minute}"
-                     ),
-                     const SizedBox(height: 5),
-                     Text("Type de soirée : ${_party.theme}"),
-                     const SizedBox(height: 5),
-                     Text("Commentaire: ${_party.comment}"),
-                     const SizedBox(height: 5),
-                     Image.network(
-                         _party.picture,
-                         height: 60,
-                         width: 90,
-                         fit: BoxFit.fill
-                     ),
-                   ],
-                 )
-               ],
-             )
-           ],
-         ),
-       ),
-     ),
+      child: Card(
+        color: setPartyCardColor(),
+        margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: 150,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            verticalDirection: VerticalDirection.down,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  adminButton(),
+                  Image.network(_party.picture,
+                      height: 90, width: 120, fit: BoxFit.fill),
+                  Column(
+                    verticalDirection: VerticalDirection.down,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const SizedBox(height: 5),
+                      Text(
+                          "${_party.date.day}/${_party.date.month}/${_party.date.year} à ${_party.date.hour}:${_party.date.minute}"),
+                      const SizedBox(height: 5),
+                      Text("Type de soirée : ${_party.theme}"),
+                      const SizedBox(height: 5),
+                      Text("${_party.comment}"),
+                      const SizedBox(height: 5),
+                      TextButton(
+                          onPressed: () async {
+                            setState(() async {
+                              await Navigator.pushNamed(
+                                  context, MyAppComments.tag,
+                                  arguments: _party) as Party;
+                            });
+                          },
+                          child: const Text(
+                            "Détails",
+                            style: TextStyle(color: Colors.white),
+                          ))
+                    ],
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -162,9 +189,7 @@ class _PartyCalendarPageState extends State<PartyCalendarPage> {
                 return ListView.builder(
                     itemCount: totalData,
                     itemBuilder: (context, index) {
-                      return CalendarCard(
-                          Party.fromJson(snapshot.data[index])
-                      );
+                      return CalendarCard(Party.fromJson(snapshot.data[index]));
                     });
               } else {
                 return const Center(

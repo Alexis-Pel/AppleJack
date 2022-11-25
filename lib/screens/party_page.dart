@@ -57,7 +57,8 @@ class _Page extends State<s_Page> {
             Text("Veuillez choisir un type de soirée :"),
             const SizedBox(height: 10),
             Column(
-              children: <Widget>[            const SizedBox(height: 10),
+              children: <Widget>[
+                const SizedBox(height: 10),
                 const SizedBox(height: 10),
                 ListTile(
                   title: const Text("Apèro"),
@@ -139,13 +140,13 @@ class _Page extends State<s_Page> {
                       partyImageController.text,
                       [],
                       partyMessageController.text,
+                      [{"message": "", "name": "", "photo": ""}],
                       _date));
                   setState(() {});
                   sendDashboardEventParty(DashboardEvent(
                       id: m.ObjectId(),
                       type: theme,
-                      message: 'Une nouvelle soirée à été crée'
-                  ));
+                      message: 'Une nouvelle soirée à été crée'));
                 },
                 child: const Text('Send'))
           ],
