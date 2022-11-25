@@ -12,7 +12,7 @@ Horse horseFromJson(String str) => Horse.fromJson(json.decode(str));
 
 String horseToJson(Horse data) => json.encode(data.toJson());
 
-class Horse {
+class Horse{
   Horse({
     required this.id,
     required this.photo,
