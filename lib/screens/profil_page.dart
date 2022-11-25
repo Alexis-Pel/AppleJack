@@ -72,7 +72,7 @@ class _ProfilPageState extends State<ProfilPage> {
                         ],
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: NetworkImage("https://media.istockphoto.com/id/1386479313/fr/photo/heureuse-femme-daffaires-afro-am%C3%A9ricaine-mill%C3%A9naire-posant-isol%C3%A9e-sur-du-blanc.jpg?s=612x612&w=is&k=20&c=k1GZ5uX3tp-AEqmgF1zvBeqSQIaIrqxKWjaNGTXTWqI="),
+                          image: NetworkImage(userLogged!.picture),
                           fit: BoxFit.cover,
                       ),
                     )),
