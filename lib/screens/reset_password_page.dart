@@ -34,7 +34,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 SizedBox(
                   height: 150,
                   width: 150,
-                  child: Image.asset("assets/appleJackLogo.png"),
+                  child: Image.asset("assets/images/appleJackLogo.png"),
                 ),
                 const SizedBox(height: 30),
 
@@ -43,7 +43,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   'Reinitialise ton mot de passe ',
                   style: TextStyle(fontSize: 20, fontFamily: 'Poppins'),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 50),
 
 
                 TextField(
@@ -62,7 +62,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     filled: true,
                   ),
                 ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 10),
                 TextField(
                   controller: _passwordController,
                   decoration: InputDecoration(
@@ -79,7 +79,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     filled: true,
                   ),
                 ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 20),
 
                 TextButton(
                   onPressed: () {
@@ -87,7 +87,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   },
                   child:
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 70.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 50.0),
                     child: Container(
                         padding: const EdgeInsets.all(7),
                         decoration: BoxDecoration(
@@ -96,16 +96,17 @@ class _ResetPasswordState extends State<ResetPassword> {
                         ),
                         child: const Center(
                           child:Text(
-                            'Reinitialiser le mot de passe',
+                            'Reinitialiser mot de passe',
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'Poppins',
-                              fontSize: 15,
+                              fontSize: 14,
                             ),
                           ),
                         )),
                   ),
                 ),
+                TextButton(onPressed: (){Navigator.pop(context);}, child: Text("Retour", style: TextStyle(color: Colors.deepPurple),))
               ],
             ),
           )
