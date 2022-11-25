@@ -53,6 +53,9 @@ class Party {
     "comment": comment,
     "date": date,
   };
+  static Future<void> deleteParty(ObjectId id) async {
+    MongoDatabase.delete(id,PARTY_COLLECTION);
+  }
 
 }
 
@@ -79,3 +82,5 @@ Future<List<Map<String, Object?>>?> getWeekParties() async {
   var result = await MongoDatabase.getAllBy({"date": {r"$gte": before, r"$lt": after}}, PARTY_COLLECTION);
   return result;
 }
+
+

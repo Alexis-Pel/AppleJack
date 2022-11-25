@@ -70,6 +70,19 @@ class _CalendarCard extends State<CalendarCard> {
       return Colors.teal;
     }
   }
+  TextButton adminButton(){
+    if(userLogged!.role==1){
+      return TextButton(onPressed: () {
+        Party.deleteParty(this._party.id);
+      }, child: Icon(Icons.remove));
+    }
+    return  TextButton(
+        onPressed: () async {
+          await joinLeaveParty(_party);
+        },
+        child: _icon
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,12 +102,7 @@ class _CalendarCard extends State<CalendarCard> {
                mainAxisSize: MainAxisSize.max,
                mainAxisAlignment: MainAxisAlignment.spaceAround,
                children: [
-                 TextButton(
-                     onPressed: () async {
-                       await joinLeaveParty(_party);
-                     },
-                     child: _icon
-                 ),
+                 adminButton(),
                  Column(
                    verticalDirection: VerticalDirection.down,
                    mainAxisSize: MainAxisSize.min,

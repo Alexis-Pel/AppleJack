@@ -80,6 +80,22 @@ class MongoDatabase{
     }
   }
 
+  static Future<void> delete(ObjectId id,String collectionString) async {
+
+    try {
+      var collection = db.collection(collectionString);
+      var result = await collection.remove(where.id(id));
+      var response = await collection.remove(result);
+      inspect(response);
+      return;
+    }
+    catch(e){
+      print(e);
+      return;
+    }
+
+  }
+
 
 
 
