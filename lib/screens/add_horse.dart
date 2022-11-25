@@ -198,7 +198,7 @@ class _AddHorsePageState extends State<AddHorsePage> {
                         ));
 
                         await Horse.createHorse(horse).then((value) =>
-                            Navigator.pushNamed(context, HorsePage.tag));
+                            Navigator.pop(context, HorsePage.tag));
                       }
                     } catch (e) {
                       print(e);
