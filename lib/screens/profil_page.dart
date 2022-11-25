@@ -4,6 +4,7 @@ import 'package:project/screens/user_page.dart';
 
 import '../Models/UserModel.dart';
 import 'horse_page.dart';
+import 'login_page.dart';
 
 final _nameController = TextEditingController();
 var _telController = TextEditingController();
@@ -40,7 +41,7 @@ class _ProfilPageState extends State<ProfilPage> {
         UserPage.tag: (context) => const UserPage(),
         HorsePage.tag: (context) => const HorsePage(),
         ProfilPage.tag: (context) => const ProfilPage(),
-
+        LoginPage.tag:(context)=>const LoginPage(),
       },
 
       home: Container(
@@ -67,20 +68,43 @@ class _ProfilPageState extends State<ProfilPage> {
                             spreadRadius: 2,
                             blurRadius: 10,
                             color: Colors.deepPurple.withOpacity(0.1),
-
                           )
                         ],
                         shape: BoxShape.circle,
                         image: DecorationImage(
                           image: NetworkImage(userLogged!.picture),
                           fit: BoxFit.cover,
-                      ),
+                        ),
                     )),
-
                   ],
                 ),
               ),
               SizedBox(height: 30),
+              TextButton(
+                onPressed: () {
+                  goLogin();
+                },
+                child:
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 70.0),
+                  child: Container(
+                      padding: const EdgeInsets.all(7),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: const Center(
+                        child:Text(
+                          'déconnection',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Poppins',
+                            fontSize: 15,
+                          ),
+                        ),
+                      )),
+                ),
+              ),
               buildTextField(),
 
             ],
@@ -222,7 +246,6 @@ class _ProfilPageState extends State<ProfilPage> {
           ),
           const SizedBox(height: 7),
           TextButton(
-
             onPressed: () {
               verifResetPassword();
             },
@@ -305,6 +328,11 @@ class _ProfilPageState extends State<ProfilPage> {
         ),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    };
+    }
   }
+
+  void goLogin() {
+    Navigator.pushNamed(context, LoginPage.tag);
+  }
+
 }

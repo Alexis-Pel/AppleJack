@@ -11,6 +11,7 @@ import 'package:project/screens/dashboard.dart';
 
 import 'add_horse.dart';
 import 'horse_page.dart';
+import 'login_page.dart';
 
 void main() async {
   //WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +30,7 @@ class Home extends StatelessWidget {
         HorsePage.tag: (context) => HorsePage(),
         AddHorsePage.tag: (context) => AddHorsePage(),
         UserPage.tag:(context)=>UserPage(),
+        LoginPage.tag:(context)=>LoginPage(),
       },
       debugShowCheckedModeBanner: false,
       title: 'AppleJack',
