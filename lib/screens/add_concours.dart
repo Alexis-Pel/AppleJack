@@ -28,7 +28,6 @@ class MyAppConcours extends StatelessWidget {
 
 class AddConcoursPage extends StatefulWidget {
   static const tag = "ConcoursPage";
-
   const AddConcoursPage({super.key});
 
   //const LoginPage({Key? key}) : super ({key: key});
@@ -69,6 +68,7 @@ class _AddConcoursPage extends State<AddConcoursPage> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.deepPurpleAccent,
         title: const Text("Ajouter un concours"),
       ),
       body: Center(
@@ -201,9 +201,9 @@ class _AddConcoursPage extends State<AddConcoursPage> {
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(Colors.blue),
+                      MaterialStateProperty.all<Color>(Colors.blue),
                   foregroundColor:
-                  MaterialStateProperty.all<Color>(Colors.white),
+                      MaterialStateProperty.all<Color>(Colors.white),
                 ),
                 child: Text("Annuler"))
           ],

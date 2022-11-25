@@ -17,7 +17,7 @@ class ContestPage extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        MyAppConcours.tag: (context) => const MyAppConcours(),
+        AddConcoursPage.tag: (context) => const AddConcoursPage(),
       },
       title: 'Add Contest',
       home: Page(),
@@ -62,7 +62,7 @@ class _Page extends State<Page> {
         //Add button
         floatingActionButton: ElevatedButton(
           onPressed: () async {
-            await Navigator.pushNamed(context, MyAppConcours.tag)
+            await Navigator.pushNamed(context, AddConcoursPage.tag)
                 .then((value) => setState(() {}));
           },
           style: ElevatedButton.styleFrom(

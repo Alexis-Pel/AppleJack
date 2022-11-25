@@ -42,3 +42,8 @@ Future<List<Map<String, dynamic>>> getDashboardEvents() async {
 Future<void> createDashboardEvent(DashboardEvent dashboardEvent) async {
   var response = await MongoDatabase.createData(dashboardEvent.toJson(), DASHBOARDEVENT_COLLECTION);
 }
+
+// Here we create a new event for the dashboard
+void sendDashboardEventParty(DashboardEvent dashboardEvent) {
+  createDashboardEvent(dashboardEvent);
+}

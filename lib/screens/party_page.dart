@@ -44,6 +44,7 @@ class _Page extends State<s_Page> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        backgroundColor: Colors.deepPurpleAccent,
         title: const Text(
             style: TextStyle(fontSize: 16, fontFamily: 'Poppins'),
             'Ajouter une soirée à thème'),
@@ -140,22 +141,17 @@ class _Page extends State<s_Page> {
                       partyMessageController.text,
                       _date));
                   setState(() {});
-                  sendDashboardEvent(DashboardEvent(
+                  sendDashboardEventParty(DashboardEvent(
                       id: m.ObjectId(),
                       type: theme,
-                      message: 'Une nouvelle soirée à été crée')
-                  );
+                      message: 'Une nouvelle soirée à été crée'
+                  ));
                 },
                 child: const Text('Send'))
           ],
         ),
       ),
     );
-  }
-
-  // Here we create a new event for the dashboard
-  void sendDashboardEvent(DashboardEvent dashboardEvent) {
-    createDashboardEvent(dashboardEvent);
   }
 
   // Here we create a new party event

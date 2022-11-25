@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as m;
 import '../Models/CourseModel.dart';
+import '../Models/DashboardEventModel.dart';
 import '../dbHelper/mongoDB.dart';
 
 void main() async {
@@ -40,6 +41,7 @@ class _Page extends State<c_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.deepPurpleAccent,
         title: const Text(
           style: TextStyle(fontSize: 16, fontFamily: 'Poppins'),
           "Ajouter un cours",
@@ -184,9 +186,12 @@ class _Page extends State<c_Page> {
             TextButton(
                 onPressed: () {
                   sendCourse(Course(_date, _duration, _terrain, _discipline, m.ObjectId(), []));
-                  setState(() {
-                    //_cards = result;
-                  });
+                  setState(() {});
+                  sendDashboardEventParty(DashboardEvent(
+                      id: m.ObjectId(),
+                      type: _discipline,
+                      message: 'Une nouvelle course à été crée'
+                  ));
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
