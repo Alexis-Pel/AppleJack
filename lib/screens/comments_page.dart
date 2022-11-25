@@ -66,11 +66,11 @@ class _CommentsPage extends State<CommentsPage> {
                 child: Text("Retour", style: TextStyle(color: Colors.blue)),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 10),
             SizedBox(
-              height: MediaQuery.of(context).size.height/1.20,
+              height: MediaQuery.of(context).size.height/2,
               child:ListView.builder(
-                  itemCount: _party.comments!.length,
+                  itemCount: _party.comments.length,
                   itemBuilder: (context, index) {
                     return CommentCard(_party.comments[index]);
                   }),
