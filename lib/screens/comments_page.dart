@@ -58,7 +58,7 @@ class _CommentsPage extends State<CommentsPage> {
           children: [
             SizedBox(height: 20,),
             SizedBox(
-              height: 50,
+              height: 90,
               child: TextButton(
                 onPressed: () {
                   Navigator.popAndPushNamed(context, PartyCalendar.tag);
