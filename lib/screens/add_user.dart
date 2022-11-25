@@ -23,7 +23,7 @@ class _AddUserPageState extends State<AddUserPage> {
   final _ageController = TextEditingController();
   final _linkController = TextEditingController();
   final _imageController = TextEditingController();
-  final _id= m.ObjectId();
+  final _id = m.ObjectId();
   final role = 0;
 
   //String _role = Role.
@@ -165,15 +165,14 @@ class _AddUserPageState extends State<AddUserPage> {
                 const SizedBox(height: 7),
                 TextButton(
                   onPressed: () {
-                   register();
-                   createDashboardEvent(DashboardEvent(
-                       id: m.ObjectId(),
-                       type: _usernameController.text,
-                       message: 'Un nouveau utilisateur a rejoint Applejack !',
-                   ));
+                    register();
+                    createDashboardEvent(DashboardEvent(
+                      id: m.ObjectId(),
+                      type: _usernameController.text,
+                      message: 'Un nouveau utilisateur a rejoint Applejack !',
+                    ));
                   },
-                  child:
-                  Padding(
+                  child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 70.0),
                     child: Container(
                         padding: const EdgeInsets.all(7),
@@ -182,7 +181,7 @@ class _AddUserPageState extends State<AddUserPage> {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: const Center(
-                          child:Text(
+                          child: Text(
                             'Créer un compte',
                             style: TextStyle(
                               color: Colors.deepPurple,
@@ -201,16 +200,28 @@ class _AddUserPageState extends State<AddUserPage> {
     );
   }
 
-
   Future<void> register() async {
-    if(_emailController.text.contains("@") && _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty && _telController.text.isNotEmpty && _usernameController.text.isNotEmpty && _ageController.text.isNotEmpty) {
+    if (_emailController.text.contains("@") &&
+        _emailController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty &&
+        _telController.text.isNotEmpty &&
+        _usernameController.text.isNotEmpty &&
+        _ageController.text.isNotEmpty) {
       // Register User to Database
 
-      var result =  User.createUsers((User(id: _id, tel: _telController.text, mail: _emailController.text, username: _usernameController.text, password: _passwordController.text, age: _ageController.text, link: "" , picture: "https://avatars.githubusercontent.com/u/77855537?v=4", role: 0)));
+      var result = User.createUsers((User(
+          id: _id,
+          tel: _telController.text,
+          mail: _emailController.text,
+          username: _usernameController.text,
+          password: _passwordController.text,
+          age: _ageController.text,
+          link: "",
+          picture: "https://avatars.githubusercontent.com/u/77855537?v=4",
+          role: 0)));
       //Register Sucessfull
       AfterRegister();
-    }
-    else{
+    } else {
       // Formulaire incomplet
       var snackBar = SnackBar(
         content: const Text('Inscription incomplete'),
@@ -221,11 +232,9 @@ class _AddUserPageState extends State<AddUserPage> {
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
-
   }
 
   void AfterRegister() {
     Navigator.pushNamed(context, LoginPage.tag);
   }
-
 }
