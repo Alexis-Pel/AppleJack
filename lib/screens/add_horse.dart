@@ -194,7 +194,7 @@ class _AddHorsePageState extends State<AddHorsePage> {
                         createDashboardEvent(DashboardEvent(
                           id: m.ObjectId(),
                           type: breedController.text,
-                          message: "Un utilisateur vient d'ajouter un nouveau cheval"
+                          message: "${userLogged!.username} vient d'ajouter un nouveau cheval"
                         ));
 
                         await Horse.createHorse(horse).then((value) =>
