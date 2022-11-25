@@ -72,10 +72,12 @@ class _CalendarCard extends State<CalendarCard> {
   }
   TextButton adminButton(){
     if(userLogged!.role==1){
-      return TextButton(onPressed: () {
-        print(this._course.id);
-        Course.deleteCourse(this._course.id);
-      }, child: Icon(Icons.remove));
+      return TextButton(
+
+          onPressed: () {
+
+        Course.deleteCourse(this._course.id).then((_) => setState(() {}));
+      }, child: Icon(Icons.remove,color: Colors.deepPurple,));
     }
     return TextButton(
         onPressed: () async {
