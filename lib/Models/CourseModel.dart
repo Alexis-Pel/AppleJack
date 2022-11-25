@@ -38,6 +38,9 @@ class Course {
         "discipline": _discipline,
         "participants": _participants
       };
+  static Future<void> deleteCourse(ObjectId id) async {
+    MongoDatabase.delete(id,COURSE_COLLECTION);
+  }
 }
 
 Future<List<Map<String, dynamic>>> getCourses() async {
