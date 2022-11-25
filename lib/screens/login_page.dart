@@ -119,9 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                           )),
                         ),
                 ),
-                const SizedBox(height: 50),
                 TextButton(
-
                   onPressed: () {
                     resetPassword();
                      },
@@ -136,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         child: const Center(
                           child:Text(
-                            'Reinitaliser le mot de passe',
+                            'Reinitaliser mot de passe',
                             style: TextStyle(
                               color: Colors.deepPurple,
                               fontFamily: 'Poppins',

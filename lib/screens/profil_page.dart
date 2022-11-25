@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:project/dbHelper/globals.dart';
 
@@ -14,9 +12,6 @@ var _passwordController = TextEditingController();
 var _ageController = TextEditingController();
 var _linkController = TextEditingController();
 var _imageController = TextEditingController();
-
-
-
 
 class ProfilPage extends StatefulWidget {
   const ProfilPage({Key? key}) : super(key: key);
@@ -232,16 +227,16 @@ class _ProfilPageState extends State<ProfilPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 70.0),
               child: Container(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.deepPurple,
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: const Center(
                     child:Text(
-                      'Mettre à jour le profil',
+                      'Mettre à jour',
                       style: TextStyle(
-                        color: Colors.deepPurple,
+                        color: Colors.white,
                         fontFamily: 'Poppins',
                         fontSize: 15,
                       ),

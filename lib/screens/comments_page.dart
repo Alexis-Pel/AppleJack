@@ -105,6 +105,7 @@ class _CommentsPage extends State<CommentsPage> {
             child: ElevatedButton(
                 onPressed: () async {
                   sendComment(_commentController.text);
+                  _commentController.text = "";
                 },
                 style: ElevatedButton.styleFrom(
                   elevation: 10,
