@@ -162,7 +162,7 @@ class _AddUserPageState extends State<AddUserPage> {
                   ),
                 ),
                 const SizedBox(height: 7),
-                const SizedBox(height: 7),
+
                 TextButton(
                   onPressed: () {
                    register();
@@ -193,6 +193,33 @@ class _AddUserPageState extends State<AddUserPage> {
                         )),
                   ),
                 ),
+
+                TextButton(
+                  onPressed: () {
+                    goLogin();
+                  },
+                  child:
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 70.0),
+                    child: Container(
+                        padding: const EdgeInsets.all(7),
+                        decoration: BoxDecoration(
+                          color: Colors.deepPurple,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: const Center(
+                          child:Text(
+                            'J` ai deja un compte',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Poppins',
+                              fontSize: 15,
+                            ),
+                          ),
+                        )),
+                  ),
+                ),
+                const SizedBox(height: 7),
               ],
             ),
           ),
@@ -227,5 +254,10 @@ class _AddUserPageState extends State<AddUserPage> {
   void AfterRegister() {
     Navigator.pushNamed(context, LoginPage.tag);
   }
+
+  void goLogin() {
+    Navigator.pushNamed(context, LoginPage.tag);
+  }
+
 
 }
