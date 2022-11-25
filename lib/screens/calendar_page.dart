@@ -61,13 +61,17 @@ class _CalendarCard extends State<CalendarCard> {
     });
   }
 
-  MaterialColor setPerso() {
+  Color textColor = Colors.black;
+
+  Color setPerso() {
     if (_course.participants.contains(_id)) {
       _icon = const Icon(Icons.exit_to_app_outlined, size: 40);
-      return Colors.amber;
+      textColor = Colors.white;
+      return Colors.deepPurple;
     } else {
       _icon = const Icon(Icons.add, size: 40);
-      return Colors.teal;
+      textColor = Colors.black;
+      return Colors.white;
     }
   }
   TextButton adminButton(){
@@ -114,10 +118,14 @@ class _CalendarCard extends State<CalendarCard> {
                         children: <Widget>[
                           Text(
                             "${_course.date.day}/${_course.date.month}/${_course.date.year} à ${_course.date.hour}:${_course.date.minute}",
+                            style: TextStyle(color: textColor,fontWeight: FontWeight.w500),
                           ),
-                          Text("Terrain: ${_course.terrain}"),
-                          Text("Discipline: ${_course.discipline}"),
-                          Text("Durée: ${_course.duration} minutes")
+                          Text("Terrain: ${_course.terrain}",
+                              style: TextStyle(color: textColor,fontWeight: FontWeight.w500)),
+                          Text("Discipline: ${_course.discipline}",
+                              style: TextStyle(color: textColor,fontWeight: FontWeight.w500)),
+                          Text("Durée: ${_course.duration} minutes",
+                              style: TextStyle(color: textColor,fontWeight: FontWeight.w500))
                         ])
                   ]),
             ],

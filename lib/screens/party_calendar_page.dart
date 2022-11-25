@@ -70,20 +70,23 @@ class _CalendarCard extends State<CalendarCard> {
     });
   }
 
-  MaterialColor setPartyCardColor() {
+  Color setPartyCardColor() {
     if (_party.participant.contains(_id)) {
+      textColor = Colors.white;
       _icon = const Icon(
         Icons.exit_to_app_outlined,
+        color: Colors.white,
         size: 40,
       );
-      return Colors.amber;
+      return Colors.deepPurple;
     } else {
+      textColor = Colors.black;
       _icon = const Icon(
         Icons.add,
         size: 40,
-        color: Colors.white,
+        color: Colors.deepPurple,
       );
-      return Colors.teal;
+      return Colors.white;
     }
   }
 
@@ -104,6 +107,8 @@ class _CalendarCard extends State<CalendarCard> {
         },
         child: _icon);
   }
+
+  Color textColor = Colors.black;
 
   @override
   Widget build(BuildContext context) {
@@ -132,11 +137,14 @@ class _CalendarCard extends State<CalendarCard> {
                     children: <Widget>[
                       const SizedBox(height: 5),
                       Text(
-                          "${_party.date.day}/${_party.date.month}/${_party.date.year} à ${_party.date.hour}:${_party.date.minute}"),
+                          "${_party.date.day}/${_party.date.month}/${_party.date.year} à ${_party.date.hour}:${_party.date.minute}",
+                      style: TextStyle(color: textColor, fontWeight: FontWeight.w500),),
                       const SizedBox(height: 5),
-                      Text("Type de soirée : ${_party.theme}"),
+                      Text("Type de soirée : ${_party.theme}",
+                        style: TextStyle(color: textColor, fontWeight: FontWeight.w500),),
                       const SizedBox(height: 5),
-                      Text("${_party.comment}"),
+                      Text("${_party.comment}",
+                        style: TextStyle(color: textColor, fontWeight: FontWeight.w500),),
                       const SizedBox(height: 5),
                       TextButton(
                           onPressed: () async {
@@ -148,7 +156,7 @@ class _CalendarCard extends State<CalendarCard> {
                           },
                           child: const Text(
                             "Détails",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.black),
                           ))
                     ],
                   )
