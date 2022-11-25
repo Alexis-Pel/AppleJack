@@ -14,6 +14,7 @@ class Party {
   String theme;
   String picture;
   String comment;
+  List<dynamic> comments;
   List<dynamic> participant;
   DateTime date;
 
@@ -24,6 +25,7 @@ class Party {
     this.picture,
     this.participant,
     this.comment,
+    this.comments,
     this.date,
   );
 
@@ -31,6 +33,7 @@ class Party {
   String get _theme => theme;
   String get _picture => picture;
   String get _comment => comment;
+  List<dynamic> get _comments => comments;
   ObjectId get _id => id;
   List<dynamic> get _participant => participant;
 
@@ -41,6 +44,7 @@ class Party {
     json["picture"],
     json["participant"],
     json["comment"],
+    json["comments"],
     json["date"],
   );
 

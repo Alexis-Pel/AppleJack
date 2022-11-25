@@ -4,6 +4,7 @@ import 'package:project/screens/party_page.dart';
 import 'package:mongo_dart/mongo_dart.dart' as m;
 
 import '../dbHelper/globals.dart';
+import 'comments_page.dart';
 
 void main() async {
   runApp(const PartyCalendar());
@@ -21,6 +22,7 @@ class PartyCalendar extends StatelessWidget {
     return MaterialApp(
       routes: {
         s_Page.tag: (context) => const s_Page(),
+        MyAppComments.tag: (context) => MyAppComments(),
       },
       debugShowCheckedModeBanner: false,
       home: PartyCalendarPage(),
@@ -40,7 +42,7 @@ class _CalendarCard extends State<CalendarCard> {
   _CalendarCard(this._party);
   final Party _party;
   final m.ObjectId _id = userLogged!.id;
-  Icon _icon = const Icon(Icons.add, size: 40,);
+  Icon _icon = const Icon(Icons.add, size: 40, color: Colors.white,);
 
   Future<void> joinLeaveParty(Party party) async {
     if (party.participant.contains(_id)) {
@@ -66,7 +68,7 @@ class _CalendarCard extends State<CalendarCard> {
       _icon = const Icon(Icons.exit_to_app_outlined, size: 40,);
       return Colors.amber;
     } else {
-      _icon = const Icon(Icons.add, size: 40,);
+      _icon = const Icon(Icons.add, size: 40, color: Colors.white,);
       return Colors.teal;
     }
   }
@@ -89,6 +91,12 @@ class _CalendarCard extends State<CalendarCard> {
                mainAxisSize: MainAxisSize.max,
                mainAxisAlignment: MainAxisAlignment.spaceAround,
                children: [
+                 Image.network(
+                     _party.picture,
+                     height: 90,
+                     width: 120,
+                     fit: BoxFit.fill
+                 ),
                  TextButton(
                      onPressed: () async {
                        await joinLeaveParty(_party);
@@ -106,14 +114,13 @@ class _CalendarCard extends State<CalendarCard> {
                      const SizedBox(height: 5),
                      Text("Type de soirée : ${_party.theme}"),
                      const SizedBox(height: 5),
-                     Text("Commentaire: ${_party.comment}"),
+                     Text("${_party.comment}"),
                      const SizedBox(height: 5),
-                     Image.network(
-                         _party.picture,
-                         height: 60,
-                         width: 90,
-                         fit: BoxFit.fill
-                     ),
+                     TextButton(onPressed: () async {
+                       setState(() async {
+                         await Navigator.pushNamed(context, MyAppComments.tag, arguments: _party) as Party;
+                       });
+                     }, child: const Text("Détails", style: TextStyle(color: Colors.white),))
                    ],
                  )
                ],
