@@ -79,14 +79,14 @@ class _ProfilPageState extends State<ProfilPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 5),
               TextButton(
                 onPressed: () {
                   goLogin();
                 },
                 child:
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 70.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
                   child: Container(
                       padding: const EdgeInsets.all(7),
                       decoration: BoxDecoration(
@@ -95,7 +95,7 @@ class _ProfilPageState extends State<ProfilPage> {
                       ),
                       child: const Center(
                         child:Text(
-                          'déconnection',
+                          'déconnexion',
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Poppins',
@@ -105,8 +105,8 @@ class _ProfilPageState extends State<ProfilPage> {
                       )),
                 ),
               ),
+              SizedBox(height: 20),
               buildTextField(),
-
             ],
           ),
         ),
@@ -283,7 +283,10 @@ class _ProfilPageState extends State<ProfilPage> {
           .then((value) => setState(() {}));}, child: Text("Les cavaliers"));
     }
     return TextButton(onPressed: () async { await Navigator.pushNamed(context, HorsePage.tag)
-        .then((value) => setState(() {}));}, child: Text("Chevaux"));
+        .then((value) => setState(() {}));},
+        child: Text("Chevaux",
+            style: TextStyle(color: Colors.deepPurple),)
+    );
   }
 
   Future<void> verifResetPassword() async {
