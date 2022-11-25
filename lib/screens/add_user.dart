@@ -162,39 +162,10 @@ class _AddUserPageState extends State<AddUserPage> {
                   ),
                 ),
                 const SizedBox(height: 7),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: TextField(
-                    controller: _imageController,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.deepPurple),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      hintText: 'Profil Picture',
-                      fillColor: Colors.grey[200],
-                      filled: true,
-                    ),
-                  ),
-                ),
                 const SizedBox(height: 7),
                 TextButton(
                   onPressed: () {
-                   User.createUsers((User(
-                       id: _id,
-                       tel: _telController.text,
-                       mail: _emailController.text,
-                       username: _usernameController.text,
-                       password: _passwordController.text,
-                       age: _ageController.text,
-                       link: _linkController.text ,
-                       picture: _imageController.text,
-                       role: 0))
-                   );
+                   register();
                    createDashboardEvent(DashboardEvent(
                        id: m.ObjectId(),
                        type: _usernameController.text,
@@ -232,7 +203,7 @@ class _AddUserPageState extends State<AddUserPage> {
 
 
   Future<void> register() async {
-    if(_emailController.text.contains("@") && _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty && _telController.text.isNotEmpty && _usernameController.text.isNotEmpty && _ageController.text.isNotEmpty && _linkController.text.isNotEmpty && _imageController.text.isNotEmpty) {
+    if(_emailController.text.contains("@") && _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty && _telController.text.isNotEmpty && _usernameController.text.isNotEmpty && _ageController.text.isNotEmpty) {
       // Register User to Database
 
       var result =  User.createUsers((User(id: _id, tel: _telController.text, mail: _emailController.text, username: _usernameController.text, password: _passwordController.text, age: _ageController.text, link: "" , picture: "https://avatars.githubusercontent.com/u/77855537?v=4", role: 0)));
