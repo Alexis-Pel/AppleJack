@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:project/Models/DashboardEventModel.dart';
 import 'package:project/screens/login_page.dart';
 import '../Models/UserModel.dart';
-import 'home.dart';
 import 'package:mongo_dart/mongo_dart.dart' as m;
 
 class AddUserPage extends StatefulWidget {
   static const tag = "AddUserPage";
   //const LoginPage({super.key});
-
   //const LoginPage({Key? key}) : super ({key: key});
 
   @override
@@ -29,7 +27,6 @@ class _AddUserPageState extends State<AddUserPage> {
   final role = 0;
 
   //String _role = Role.
-
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +57,6 @@ class _AddUserPageState extends State<AddUserPage> {
                   style: TextStyle(fontSize: 15, fontFamily: 'Poppins'),
                 ),
                 const SizedBox(height: 20),
-
-
                 //Tel
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -83,7 +78,6 @@ class _AddUserPageState extends State<AddUserPage> {
                   ),
                 ),
                 const SizedBox(height: 7),
-
                 //Email
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -126,7 +120,6 @@ class _AddUserPageState extends State<AddUserPage> {
                   ),
                 ),
                 const SizedBox(height: 7),
-
                 //Password
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -148,7 +141,6 @@ class _AddUserPageState extends State<AddUserPage> {
                   ),
                 ),
                 const SizedBox(height: 7),
-
                 //Age
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -190,51 +182,24 @@ class _AddUserPageState extends State<AddUserPage> {
                   ),
                 ),
                 const SizedBox(height: 7),
-               /* Container(
-                  child: Column(
-                    children: <Widget>[
-                      const Text("Rôle"),
-                      Column(
-                        children: <Widget>[
-                          ListTile(
-                            title: const Text('Cavalier'),
-                            /*
-                            leading: Radio<String>(
-                              value: Role.,
-                              groupValue: _role,
-                              onChanged: (String? value) {
-                                setState(() {
-                                  _role = value!;
-                                });
-                              },
-                            ),
-                            */
-                          ),
-                          ListTile(
-                            title: const Text('Gérant'),
-                            /*
-                            leading: Radio<String>(
-                              value: Role.,
-                              groupValue: _role,
-                              onChanged: (String? value) {
-                                setState(() {
-                                  _role = value!;
-                                });
-                              },
-                            ),
-                            */
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-*/
-
                 TextButton(
-
                   onPressed: () {
-                   User.createUsers((User(id: _id, tel: _telController.text, mail: _emailController.text, username: _usernameController.text, password: _passwordController.text, age: _ageController.text, link: _linkController.text , picture: _imageController.text, role: 0)));
+                   User.createUsers((User(
+                       id: _id,
+                       tel: _telController.text,
+                       mail: _emailController.text,
+                       username: _usernameController.text,
+                       password: _passwordController.text,
+                       age: _ageController.text,
+                       link: _linkController.text ,
+                       picture: _imageController.text,
+                       role: 0))
+                   );
+                   createDashboardEvent(DashboardEvent(
+                       id: m.ObjectId(),
+                       type: _usernameController.text,
+                       message: 'Un nouveau utilisateur à rejoint Applejack !',
+                   ));
                   },
                   child:
                   Padding(
