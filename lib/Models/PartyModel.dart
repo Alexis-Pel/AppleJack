@@ -54,6 +54,7 @@ class Party {
     "theme": theme,
     "picture": picture,
     "participant": participant,
+    "comments": comments,
     "comment": comment,
     "date": date,
   };

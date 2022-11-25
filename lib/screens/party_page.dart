@@ -140,7 +140,7 @@ class _Page extends State<s_Page> {
                       partyImageController.text,
                       [],
                       partyMessageController.text,
-                      [],
+                      [{"message": "", "name": "", "photo": ""}],
                       _date));
                   setState(() {});
                   sendDashboardEventParty(DashboardEvent(
